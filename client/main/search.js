@@ -1,20 +1,16 @@
 // controller for game collection
 var app = angular.module('gameMon.search', ['ui.materialize']);
 app.controller('SearchController', function($scope, giantBomb) {
-  $scope.search = {};
-  $scope.search.results = [];
-  // for(var i = 0; i < 5; i++){
-  //   $scope.search.results[i] = 'Hello';
-  //   $scope.search.results[i].deck = 'Hi';
-  // };
+  $scope.search = '';
+  $scope.searchResults = [];
 
-  giantBomb.searchByTerm('pokemon', function(res) {
-    $scope.search.results = res.data;
-  });
+  $scope.searchForGames = function() {
+    giantBomb.searchByTerm($scope.search, function(res) {
+      $scope.searchResults = res.data;
+      $scope.search = '';
+    });
+  };
 
-  // giantBomb.searchById(24024, function(res) {
-  //   console.log(res.data);
-  // });
 });
 
 app.factory('giantBomb', ['$http', function($http) {
