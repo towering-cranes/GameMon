@@ -1,9 +1,15 @@
 //add authentication
 
+// var lock = new Auth0Lock(
+//   process.env.AUTH0_CLIENT_ID,
+//   process.env.AUTH0_DOMAIN
+// );
+
 var lock = new Auth0Lock(
-  'ENV-VAR',
-  'towering-cranes.auth0.com'
+  window.authClient,
+  window.authDomain
 );
+
 
 // Listening for the authenticated event
 lock.on("authenticated", function(authResult) {
