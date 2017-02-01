@@ -8,6 +8,7 @@ app.controller('SearchController', function($scope, giantBomb) {
     giantBomb.searchByTerm($scope.search, function(res) {
       $scope.searchResults = res.data;
       $scope.search = '';
+      $scope.searchForm.$setPristine();
     });
   };
 

@@ -73,8 +73,8 @@
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
-    <form ng-submit="searchForGames()">
-      <input type="text" name="search" placeholder="search" ng-model="search"></input>
+    <form name="searchForm" ng-submit="searchForGames()">
+      <input type="text" placeholder="search" ng-model="search"></input>
     </form>
 
     <h5>Search Results</h5>
