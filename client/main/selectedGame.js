@@ -1,11 +1,12 @@
 // module with factory to pass game info
-var app = angular.module('gameMon.selectedGame', ['gameMon.search']);
+var app = angular.module('gameMon.selectedGame', ['gameMon.search', 'gameMon.modal']);
 
-app.factory('selectedGame', ['$http', 'giantBomb', function($http, giantBomb) {
+app.factory('SelectedGame', ['$http', 'giantBomb', '$rootScope', function($http, giantBomb, $rootScope) {
   var currentGame = {};
   var setCurrentGame = function(id) {
-    giantBomb.searchById(id, function(game) {
-      currentGame = game;
+    giantBomb.searchById(id, function(res) {
+      currentGame = res.data;
+      $rootScope.$emit('gameChange', currentGame);
     });
   };
   var getCurrentGame = function() {
@@ -13,6 +14,6 @@ app.factory('selectedGame', ['$http', 'giantBomb', function($http, giantBomb) {
   };
   return {
     setCurrentGame: setCurrentGame,
-    getCurrentGame: getCurrentGame
+    getCurrentGame: getCurrentGame,
   };
 }]);
