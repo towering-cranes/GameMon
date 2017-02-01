@@ -69,7 +69,7 @@
             <!-- img, description etc UPDATE to include final property of data object-->
             <a data-target="game0" modal>
             <!-- <img class='champion-icon' src='http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png'/> -->
-            <img class="gameImage" src="{{ game.image }}">
+            <img class="gameImage" ng-src="{{ game.image }}">
             </a>
           </div>
         </div>
@@ -77,7 +77,7 @@
         <div ng-if="layout === 'list'">
           <div class="card horizontal">
             <div class="card-image">
-              <img src="{{ game.image}}" class="listImage">
+              <img ng-src="{{ game.image }}" class="listImage">
             </div>
             <div class="card-stacked">
               <div class="card-content">
@@ -110,7 +110,7 @@
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
-          <img src="{{ game.image.small_url }}">
+          <img ng-src="{{ game.image.small_url }}">
         </div>
         <div class="card-stacked">
           <div class="card-content searchCard">
