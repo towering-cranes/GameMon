@@ -71,10 +71,14 @@
 <!--Search Area -->
 <div class="col s3" ng-if="searchModel===true">
   <div ng-controller="SearchController">
+
     <h4>Search Games</h4><br>
-    <input type="text" name="search" placeholder="search"></input><br>
+    <form ng-submit="searchForGames()">
+      <input type="text" name="search" placeholder="search" ng-model="search"></input>
+    </form>
+
     <h5>Search Results</h5>
-    <div ng-repeat="game in search.results">
+    <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
           <img src="{{ game.image.small_url }}">
