@@ -1,6 +1,6 @@
 // controller for game collection
 var app = angular.module('gameMon.gameCollection', ['ui.materialize']);
-app.controller('GameCollectionController', function($scope, userCollection) {
+app.controller('GameCollectionController', function($scope, userCollection, userCollectionData) {
   $scope.data = {};
   $scope.data.games = [];
   $scope.username = 'test';
@@ -10,6 +10,7 @@ app.controller('GameCollectionController', function($scope, userCollection) {
 
   userCollection.getUserCollection($scope.username, function(res) {
     $scope.data.games = res.data;
+    userCollectionData.setCollectionData(res.data);
   });
 
   // userCollection.addGameToCollection($scope.username, 24024, function(res) {
@@ -20,6 +21,21 @@ app.controller('GameCollectionController', function($scope, userCollection) {
   //   console.log(res.data);
   // });
 });
+
+app.factory('userCollectionData', [function() {
+  var collectionData = [];
+  var setCollectionData = function(data) {
+    collectionData = data;
+  };
+  var getCollectionData = function() {
+    return collectionData;
+  };
+
+  return {
+    setCollectionData: setCollectionData,
+    getCollectionData: getCollectionData
+  };
+}]);
 
 app.factory('userCollection', ['$http', function($http) {
   var db = {};
