@@ -1,7 +1,7 @@
 //add authentication
 
 var lock = new Auth0Lock(
-  'QfGpmdzDtxUhduPejeKN8P1TadDU8OqG',
+  'ENV-VAR',
   'towering-cranes.auth0.com'
 );
 
