@@ -139,13 +139,14 @@
   <div class="modal-content">
     <div class="row">
       <div class="col s3">
-        <img class='skin-splash center-align' src='https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Trundle_0.jpg' />
+        <!-- TODO: Move style away from here -->
+        <img style="width:200px" class='skin-splash center-align' ng-src="{{data.image.small_url}}" />
       </div>
       <div class="col s7 push-s1">
         <div class="row">
           <div class="col s6">
             <h3>{{ data.name }}</h3>
-            <h5>{{ data.publishers }}</h5>
+            <h5 ng-repeat="publisher in data.publishers">{{ publisher.name }}</h5>
           </div>
             <div class="col s1 push-s7">
               <!-- add button -->
