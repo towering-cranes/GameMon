@@ -33,20 +33,28 @@
           </a>
         </li>
         </ul>
-        <ul class="right hide-on-med-and-down views">
+        <ul class="right hide-on-med-and-down views" ng-init="layout = 'grid'">
         <li>Views</li>
-        <li><i class="material-icons md-18">view_list</i></li>
-        <li><i class="material-icons md-18">view_module</i></li>
+        <li><a href class="viewButton" ng-class="{active: layout ==='list'}" ng-click="layout = 'list'">
+          <i class="material-icons md-18">view_list</i>
+        </a></li>
+        <li><a href class="viewButton" ng-class="{active: layout ==='grid'}" ng-click="layout = 'grid'">
+          <i class="material-icons md-18">view_module</i>
+        </a></li>
       </ul>
     </div>
     <!-- Dropdown Structure -->
-    <!--Use ng-repeat for all the platforms/genres currently in collection-->
+    <!--TODO: Apply filter after clicking the dropdown option-->
     <ul id='platformDropdown' class='dropdown-content'>
-        <li><a href="javascript:void(0);">XBox 360</a></li>
+        <li ng-repeat="platform in platformArr">
+          <a href = "javascript:void(0);">{{platform}}</a>
+        </li>
     </ul>
 
     <ul id='genreDropdown' class='dropdown-content'>
-        <li><a href="javascript:void(0);">Shooter</a></li>
+        <li ng-repeat="genre in genreArr">
+          <a href = "javascript:void(0);">{{genre}}</a>
+        </li>
     </ul>
 
   </nav>
@@ -54,15 +62,36 @@
     <div class="row">
       <span ng-if="data.games.length===0">No games currently in collection. Add games by pressing the plus button on the right.</span>
       <div class="game" ng-repeat="game in data.games">
-        <!-- game -->
-        <div class="col s2">
-          <!-- img, description etc UPDATE to include final property of data object-->
-          <a data-target="game0" modal>
-          <!-- <img class='champion-icon' src='http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png'/> -->
-          <img class="gameImage" src="{{ game.image }}">
-          </a>
+        <!-- grid layout -->
+        <div ng-if="layout === 'grid'">
+          <!-- game -->
+          <div class="col s2">
+            <!-- img, description etc UPDATE to include final property of data object-->
+            <a data-target="game0" modal>
+            <!-- <img class='champion-icon' src='http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png'/> -->
+            <img class="gameImage" src="{{ game.image }}">
+            </a>
+          </div>
         </div>
-      </div>
+      <!-- list layout -->
+        <div ng-if="layout === 'list'">
+          <div class="card horizontal">
+            <div class="card-image">
+              <img src="{{ game.image}}" class="listImage">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h5>{{game.title}}</h5>
+                <p>{{ game.summary }}</p>
+              </div>
+    <!--           <div class="card-action">
+                <a href="#">More Details</a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end of ng-repeat-->
     </div>
   </div>
 </div>
@@ -85,7 +114,7 @@
         </div>
         <div class="card-stacked">
           <div class="card-content searchCard">
-            <p class="truncate">{{ game.deck }}</p>
+            <p>{{ game.deck }}</p>
           </div>
 <!--           <div class="card-action">
             <a href="#">More Details</a>
