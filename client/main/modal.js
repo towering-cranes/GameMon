@@ -6,7 +6,4 @@ app.controller('ModalController', function($scope, userCollectionData){
   for(var i = 0; i < 5; i++){
     $scope.data.similarGames[i] = 'Hello';
   };
-  setTimeout(function() {
-    console.log(userCollectionData.getCollectionData())
-  }, 1000); // Bad way to get data if server is slow for some reason
 });

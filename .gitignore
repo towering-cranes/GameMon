@@ -5,6 +5,7 @@ build/
 dist/
 node_modules/
 server/config/keys.js
+env/
 
 # Floobits #
 .floo
