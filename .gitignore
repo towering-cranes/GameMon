@@ -1,0 +1,11 @@
+.DS_STORE
+logs
+*.log
+build/
+dist/
+node_modules/
+server/config/keys.js
+
+# Floobits #
+.floo
+.flooignore
