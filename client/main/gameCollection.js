@@ -47,7 +47,7 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
         }
       }
     }
-    //console.log($scope.data.games);
+    console.log($scope.data.games);
   });
 
   //TODO: Add/remove game to collection after search and modal is implemented
@@ -120,58 +120,56 @@ app.factory('UserCollection', ['$http', function($http) {
   return db;
 }]);
 
-
-//SAMPLE CUSTOM FILTER
-// app.filter('tagFilter', function() {
-//   return function (items, classFilter) {
-//     if (!items) {
-//       return;
-//     }
-//     var filtered = [];
-//     for (var i = 0; i<Object.keys(items).length; i++) {
-//       var champ = items[Object.keys(items)[i]];
-//       if(champ.tags.indexOf(classFilter) !== -1 || classFilter === '') {
-//         filtered.push(champ);
-//       }
-//     }
-//     return filtered;
-//   };
-// });
-
-//Platform and Genre filter
+//Collection filter
 app.filter('collectionFilter', function() {
   return function(items, filterOpt) {
-    console.log('filterOpt is ', filterOpt);
     if (!items) {
       return;
-    } else if (filterOpt === '') {
+    } else if (filterOpt[0] === '' || null) {
       return items;
     } else {
-      console.log('filtering');
       var filtered = [];
       for(var i = 0; i < items.length; i++) {
-        var genres = items[i].genres;
-        //Check if genre matches filter
-        for (var j = 0; j < genres.length; j++) {
-          if(genres[j].name === filterOpt) {
+        //Input filter
+        if (filterOpt[1] === 'text' && filterOpt[0]) {
+          //Check if input matches title or aliases
+          //Get rid of accent on e for Pokémon case (most common case)
+          if (items[i].title.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase() || items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
             filtered.push(items[i]);
+          } else {
+            //Check if matches franchise
+            if (items[i].franchises) {
+              for (var j = 0; j < items[i].franchises.length; j++) {
+                if (items[i].franchises[j].name.toLowerCase() === filterOpt[0].toLowerCase()) {
+                  filtered.push(items[i]);
+                }
+              }
+            }
+          }
+        } //End of input filter
+
+        //Genre filter
+        if (filterOpt[1] === 'genre') {
+          var genres = items[i].genres;
+          //Check if genre matches filter
+          for (var j = 0; j < genres.length; j++) {
+            if(genres[j].name === filterOpt[0]) {
+              filtered.push(items[i]);
+            }
           }
         }
-        var platforms = items[i].platforms;
-        //Check if platform matches filter
-        for (var j = 0; j < platforms.length; j++) {
-          if(platforms[j].name === filterOpt) {
-            filtered.push(items[i]);
+        //Platform filter
+        if (filterOpt[1] === 'platform') {
+          var platforms = items[i].platforms;
+          //Check if platform matches filter
+          for (var j = 0; j < platforms.length; j++) {
+            if(platforms[j].name === filterOpt[0]) {
+              filtered.push(items[i]);
+            }
           }
         }
       }
-      return filtered;
+      return filtered.length === 0 ? items : filtered;
     }
   };
-});
-
-//Name filter... and franchise?
-app.filter('nameFilter', function() {
-
-
 });
