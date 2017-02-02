@@ -9,7 +9,7 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
   $rootScope.$on('gameChangeSearch', function(event, game) {
     $scope.data = game;
     $scope.similarGames = [];
-    $scope.data.image = game.image.small_url;
+    $scope.data.image = game.image ? game.image.small_url : null;
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
       $scope.similarGames = game.similar_games;
