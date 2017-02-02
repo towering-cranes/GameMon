@@ -6,18 +6,17 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
   $scope.similarGames = [];
 
   // true for add, false for remove
-  $scope.inCollection = false;
+  $scope.inCollection;
 
   $scope.addGameToCollection = function(giantBombId) {
-    // UserCollection.addGameToCollection($rootScope.username, giantBombId, function(response) {
-    //   console.log(response);
-    // });
-    console.log('inside add');
-    $scope.inCollection = false;
+    UserCollection.addGameToCollection($rootScope.username, giantBombId, function(response) {
+      console.log(response);
+    });
+    $scope.inCollection = true;
   };
   $scope.removeGameFromCollection = function() {
     console.log('inside removed');
-    $scope.inCollection = true;
+    $scope.inCollection = false;
   };
 
   // Game from search is different than collection
@@ -26,11 +25,12 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.similarGames = [];
     $scope.data.image = game.image ? game.image.small_url : null;
     $scope.canAddToCollection = true;
+    $scope.data.giantBombId = game.id;
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
       $scope.similarGames = game.similar_games;
     });
-    $scope.canAdd = true;
+    $scope.inCollection = false;
   });
 
   $rootScope.$on('gameChangeCollection', function(event, game) {
@@ -40,6 +40,6 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
     $scope.similarGames = game.similarGames;
-    $scope.canAdd = false;
+    $scope.inCollection = true;
   });
 }]);
