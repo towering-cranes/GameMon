@@ -1,8 +1,9 @@
 // controller for game collection
 var app = angular.module('gameMon.gameCollection', ['ui.materialize', 'gameMon.selectedGame']);
-app.controller('GameCollectionController', function($scope, UserCollection, SelectedGame) {
+app.controller('GameCollectionController', function($scope, UserCollection, SelectedGame, $rootScope) {
   $scope.data = {};
   $scope.username = 'kevin';
+  $rootScope.username = 'kevin';
   //Store games in corresponding objects
   $scope.platforms = {};
   $scope.genres = {};

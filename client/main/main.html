@@ -154,8 +154,9 @@
           </div>
             <div class="col s1 push-s7">
               <!-- add button -->
-              <a class="right btn-floating btn-large waves-effect waves-light teal">
-                  <i class="material-icons">add</i>
+              <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
+                  <i ng-show="!inCollection" class="material-icons">add</i>
+                  <i ng-show="inCollection" class="material-icons">remove</i>
               </a>
             </div>
           </div>
