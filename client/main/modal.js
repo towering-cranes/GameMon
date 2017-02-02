@@ -8,6 +8,7 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
   // Game from search is different than collection
   $rootScope.$on('gameChangeSearch', function(event, game) {
     $scope.data = game;
+    $scope.similarGames = [];
     $scope.data.image = game.image.small_url;
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
@@ -17,6 +18,7 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
 
   $rootScope.$on('gameChangeCollection', function(event, game) {
     $scope.data = game;
+    $scope.similarGames = [];
     // Set up same format as giantbomb results...
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
