@@ -7,7 +7,8 @@
 
 var lock = new Auth0Lock(
   window.authClient,
-  window.authDomain
+  window.authDomain,
+  {auth: {responseType: 'token', redirectUrl: 'http://127.0.0.1:8080/#/gamemon'}}
 );
 
 
@@ -20,14 +21,14 @@ lock.on("authenticated", function(authResult) {
       console.log("Error in getUserInfo ", error);
       return;
     }
-
+    console.log("About to set access token and profile");
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
+
   });
 });
 
 document.getElementById('btn-login').addEventListener('click', function() {
-  //lock.show can take in an object to config
   lock.show();
 });
 
@@ -38,12 +39,14 @@ document.getElementById('btn-logout').addEventListener('click', function() {
 function logOutUser() {
 
   localStorage.removeItem('accessToken');
-  window.location.href = 'https://towering-cranes.auth0.com/v2/logout?returnTo=http%3A%2F%2F127.0.0.1%3A8080%2F';
+  localStorage.removeItem('profile');
+  window.location.href = 'https://towering-cranes.auth0.com/v2/logout?returnTo=http%3A%2F%2F127.0.0.1%3A8080%2F%23%2F';
 
 }
 
 var token = localStorage.getItem('accessToken');
 if (token) {
+  console.log('has a token');
   showLoggedIn();
 }
 
