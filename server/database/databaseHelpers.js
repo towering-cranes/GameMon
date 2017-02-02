@@ -16,7 +16,7 @@ exports.addGameToCollection = function(user, game, callback) {
       giantBombId: game.id,
       title: game.name,
       aliases: game.aliases, // string
-      image: game.image.super_url,
+      image: game.image.small_url,
       releaseDate: game.original_release_date,
       genres: JSON.stringify(game.genres), // array of objects
       platforms: JSON.stringify(game.platforms),
