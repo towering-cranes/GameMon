@@ -166,13 +166,14 @@
           <!-- Game details -->
         <hr>
         <!--carousel similar games-->
+        <!-- TODO: Make separate api calls to get similar game images -->
         <h5>Related Games</h5>
-        <!-- <div ng-if="similarGames" carousel full-width="true" indicators="true"> -->
-          <div ng-repeat="game in similarGames | limitTo:3">
-          <!-- TODO: Make separate api calls to get similar game images -->
+        <div ng-show="!similarGames.length">No related games.</div>
+        <div ng-if="similarGames.length" carousel full-width="true" indicators="true">
+          <div ng-repeat="game in similarGames">
             <a class="carousel-item" target="_blank" ng-href="{{ game.site_detail_url }}"><p>{{ game.name }}</p></a>
           </div>
-        <!-- </div> -->
+        </div>
       </div>
     </div>
   </div>
