@@ -21,45 +21,43 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
     // console.log('get game from gameCollection', SelectedGame.getCurrentGame());
   };
 
-  UserCollection.getUserCollection($scope.username, function(res) {
-    //Gets user collection, stores platforms and games in $scope.platforms
-    $scope.data.games = res.data;
-    for (var i = 0; i < $scope.data.games.length; i++) {
-      var game = $scope.data.games[i];
-      //Platforms
-      for (var j = 0; j < game.platforms.length; j++) {
-        var platform = game.platforms[j].name;
-        if (!$scope.platforms.hasOwnProperty(platform)) {
-          $scope.platforms[platform] = [game];
-          $scope.platformArr.push(platform);
-        } else {
-          $scope.platforms[platform].push(game);
+  var getCollection = function() {
+    UserCollection.getUserCollection($scope.username, function(res) {
+      //Gets user collection, stores platforms and games in $scope.platforms
+      $scope.data.games = res.data;
+      for (var i = 0; i < $scope.data.games.length; i++) {
+        var game = $scope.data.games[i];
+        //Platforms
+        for (var j = 0; j < game.platforms.length; j++) {
+          var platform = game.platforms[j].name;
+          if (!$scope.platforms.hasOwnProperty(platform)) {
+            $scope.platforms[platform] = [game];
+            $scope.platformArr.push(platform);
+          } else {
+            $scope.platforms[platform].push(game);
+          }
+        }
+        //Genres
+        for (var k = 0; k < game.genres.length; k++) {
+          var genre = game.genres[k].name;
+          if (!$scope.genres.hasOwnProperty(genre)) {
+            $scope.genres[genre] = [game];
+            $scope.genreArr.push(genre);
+          } else {
+            $scope.genres[genre].push(game);
+          }
         }
       }
-      //Genres
-      for (var k = 0; k < game.genres.length; k++) {
-        var genre = game.genres[k].name;
-        if (!$scope.genres.hasOwnProperty(genre)) {
-          $scope.genres[genre] = [game];
-          $scope.genreArr.push(genre);
-        } else {
-          $scope.genres[genre].push(game);
-        }
-      }
-    }
-    console.log($scope.data.games);
+      console.log($scope.data.games);
+    });
+  };
+
+  getCollection();
+
+  $rootScope.$on('collectionChange', function(event) {
+    getCollection();
   });
 
-  //TODO: Add/remove game to collection after search and modal is implemented
-
-
-  // userCollection.addGameToCollection($scope.username, 24024, function(res) {
-  //   console.log(res.data);
-  // });
-
-  // userCollection.removeGameFromCollection($scope.username, 24024, function(res) {
-  //   console.log(res.data);
-  // });
 });
 
 app.factory('UserCollection', ['$http', function($http) {
@@ -72,6 +70,7 @@ app.factory('UserCollection', ['$http', function($http) {
       }, failCallback);
   };
 
+  // Following 2 functions used in modal
   db.addGameToCollection = function(username, gameId, callback) {
     // Get game obj from game id
     $http.get('/games/search/id/' + gameId)
