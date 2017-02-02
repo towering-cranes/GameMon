@@ -131,3 +131,33 @@ app.factory('UserCollection', ['$http', function($http) {
 //     return filtered;
 //   };
 // });
+
+//Platform filter
+app.filter('platformFilter', function() {
+  return function(items, platFilter) {
+    console.log('platFilter is ', platFilter);
+    if (!items) {
+      return;
+    }
+    var filtered = [];
+    console.log(items);
+    return items;
+  };
+});
+//Genre Filter
+app.filter('genreFilter', function() {
+  return function(items, genFilter) {
+    console.log('genreFilter is ', genFilter);
+    if (!items) {
+      return;
+    }
+    var filtered = [];
+    console.log(items);
+    return items;
+  };
+});
+//Name filter... and franchise?
+app.filter('nameFilter', function() {
+
+
+});
