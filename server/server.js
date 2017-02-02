@@ -6,7 +6,7 @@ var dbHelpers = require('./database/databaseHelpers.js');
 var giantBombHelpers = require('./giantBomb/giantBombHelpers.js');
 var app = express();
 app.use(express.static(__dirname + "/../client"));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '5mb'}));
 var port = process.env.PORT || 8080;
 
 // Add a user to db
