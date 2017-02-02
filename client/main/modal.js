@@ -43,7 +43,11 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     // Set up same format as giantbomb results...
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
-    $scope.similarGames = game.similarGames;
+    // $scope.similarGames = game.similarGames; // Assignment like this doesn't update carousel... suboptimal fix below
+    giantBomb.searchById(game.giantBombId, function(response) {
+      var game = response.data;
+      $scope.similarGames = game.similar_games;
+    });
     $scope.inCollection = true;
   });
 }]);
