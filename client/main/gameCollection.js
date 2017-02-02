@@ -48,7 +48,7 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
           }
         }
       }
-      console.log($scope.data.games);
+      // console.log($scope.data.games);
     });
   };
 
@@ -95,7 +95,7 @@ app.factory('UserCollection', ['$http', function($http) {
         // Attach user to game object for back end processing
         var game = response.data;
         game.username = username;
-        console.log(game);
+        // console.log(game);
 
         $http({
           url: '/games',
