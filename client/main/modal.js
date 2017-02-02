@@ -5,15 +5,21 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
   $scope.data = {};
   $scope.similarGames = [];
 
+  // true for add, false for remove
+  $scope.canAdd = false;
+
   // Game from search is different than collection
   $rootScope.$on('gameChangeSearch', function(event, game) {
     $scope.data = game;
     $scope.similarGames = [];
     $scope.data.image = game.image ? game.image.small_url : null;
+    $scope.canAddToCollection = true;
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
       $scope.similarGames = game.similar_games;
     });
+    $scope.canAdd = true;
+    console.log($scope.canAdd);
   });
 
   $rootScope.$on('gameChangeCollection', function(event, game) {
@@ -23,5 +29,6 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
     $scope.similarGames = game.similarGames;
+    $scope.canAdd = false;
   });
 }]);
