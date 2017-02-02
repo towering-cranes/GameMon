@@ -165,11 +165,12 @@
         <hr>
         <!--carousel similar games-->
         <h5>Related Games</h5>
-        <!-- <div carousel full-width="true" indicators="true">
-          <div ng-repeat="games in similarGames">
-            <a class="carousel-item" href="#!"><img src="http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png"></a>
+        <!-- <div ng-if="similarGames" carousel full-width="true" indicators="true"> -->
+          <div ng-repeat="game in similarGames | limitTo:3">
+          <!-- TODO: Make separate api calls to get similar game images -->
+            <a class="carousel-item" target="_blank" ng-href="{{ game.site_detail_url }}"><p>{{ game.name }}</p></a>
           </div>
-        </div> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
