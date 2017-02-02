@@ -9,6 +9,11 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
   //Store just names in array
   $scope.platformArr = [];
   $scope.genreArr = [];
+  //For filtering
+  $scope.setFilter = function(val) {
+    $scope.current = val;
+  }
+  $scope.current = '';
 
   $scope.selectGame = function(game) {
     SelectedGame.setCurrentGameFromCollection(game);
@@ -41,7 +46,7 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
         }
       }
     }
-    console.log($scope.data.games);
+    //console.log($scope.data.games);
   });
 
   //TODO: Add/remove game to collection after search and modal is implemented
@@ -131,3 +136,41 @@ app.factory('UserCollection', ['$http', function($http) {
 //     return filtered;
 //   };
 // });
+
+//Platform and Genre filter
+app.filter('collectionFilter', function() {
+  return function(items, filterOpt) {
+    console.log('filterOpt is ', filterOpt);
+    if (!items) {
+      return;
+    } else if (filterOpt === '') {
+      return items;
+    } else {
+      console.log('filtering');
+      var filtered = [];
+      for(var i = 0; i < items.length; i++) {
+        var genres = items[i].genres;
+        //Check if genre matches filter
+        for (var j = 0; j < genres.length; j++) {
+          if(genres[j].name === filterOpt) {
+            filtered.push(items[i]);
+          }
+        }
+        var platforms = items[i].platforms;
+        //Check if platform matches filter
+        for (var j = 0; j < platforms.length; j++) {
+          if(platforms[j].name === filterOpt) {
+            filtered.push(items[i]);
+          }
+        }
+      }
+      return filtered;
+    }
+  };
+});
+
+//Name filter... and franchise?
+app.filter('nameFilter', function() {
+
+
+});
