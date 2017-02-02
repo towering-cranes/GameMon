@@ -3,8 +3,9 @@ var app = angular.module('gameMon.modal', ['ui.materialize', 'gameMon.selectedGa
 
 app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', function($scope, SelectedGame, $rootScope) {
   $scope.data = SelectedGame.currentGame;
-  $scope.similarGames = {};
+  $scope.similarGames;
   $rootScope.$on('gameChange', function(event, game) {
     $scope.data = game;
+    $scope.similarGames = game.similar_games;
   });
 }]);

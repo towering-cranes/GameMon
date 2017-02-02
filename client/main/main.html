@@ -75,20 +75,22 @@
         </div>
       <!-- list layout -->
         <div ng-if="layout === 'list'">
-          <div class="card horizontal">
-            <div class="card-image">
-              <img ng-src="{{ game.image }}" class="listImage">
-            </div>
-            <div class="card-stacked">
-              <div class="card-content">
-                <h5>{{game.title}}</h5>
-                <p>{{ game.summary }}</p>
+            <div class="card horizontal">
+              <div class="card-image">
+                <a data-target="game0" modal ng-click="selectGame(game.giantBombId)">
+                  <img ng-src="{{ game.image }}" class="listImage">
+                </a>
               </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5>{{game.title}}</h5>
+                  <p>{{ game.summary }}</p>
+                </div>
     <!--           <div class="card-action">
                 <a href="#">More Details</a>
               </div> -->
+              </div>
             </div>
-          </div>
         </div>
 
       </div><!-- end of ng-repeat-->
@@ -165,11 +167,12 @@
         <hr>
         <!--carousel similar games-->
         <h5>Related Games</h5>
-        <!-- <div carousel full-width="true" indicators="true">
-          <div ng-repeat="games in similarGames">
-            <a class="carousel-item" href="#!"><img src="http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png"></a>
+        <!-- <div ng-if="similarGames" carousel full-width="true" indicators="true"> -->
+          <div ng-repeat="game in similarGames | limitTo:3">
+          <!-- TODO: Make separate api calls to get similar game images -->
+            <a class="carousel-item" target="_blank" ng-href="{{ game.site_detail_url }}"><p>{{ game.name }}</p></a>
           </div>
-        </div> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
