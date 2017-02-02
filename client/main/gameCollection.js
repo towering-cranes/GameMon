@@ -123,8 +123,10 @@ app.factory('UserCollection', ['$http', function($http) {
 app.filter('collectionFilter', function() {
   return function(items, filterOpt) {
     if (!items) {
+      //Do nothing if there are no items
       return;
     } else if (filterOpt[0] === '' || null) {
+      //Don't filter if nothing is given in filter options
       return items;
     } else {
       var filtered = [];
@@ -132,7 +134,7 @@ app.filter('collectionFilter', function() {
         //Input filter
         if (filterOpt[1] === 'text' && filterOpt[0]) {
           //Check if input matches title or aliases
-          //Get rid of accent on e for Pokémon case (most common case)
+          //Get rid of accent on e for Pokémon case (most common case) and ignore caps
           if (items[i].title.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase() || items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
             filtered.push(items[i]);
           } else {
@@ -168,6 +170,7 @@ app.filter('collectionFilter', function() {
           }
         }
       }
+      //If nothing was filtered, return all items
       return filtered.length === 0 ? items : filtered;
     }
   };
