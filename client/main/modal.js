@@ -14,8 +14,10 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     });
     $scope.inCollection = true;
   };
-  $scope.removeGameFromCollection = function() {
-    console.log('inside removed');
+  $scope.removeGameFromCollection = function(giantBombId) {
+    UserCollection.removeGameFromCollection($rootScope.username, giantBombId, function(response) {
+      console.log(response);
+    });
     $scope.inCollection = false;
   };
 
