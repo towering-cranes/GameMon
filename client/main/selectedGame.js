@@ -3,17 +3,23 @@ var app = angular.module('gameMon.selectedGame', ['gameMon.search', 'gameMon.mod
 
 app.factory('SelectedGame', ['$http', 'giantBomb', '$rootScope', function($http, giantBomb, $rootScope) {
   var currentGame = {};
-  var setCurrentGame = function(id) {
-    giantBomb.searchById(id, function(res) {
-      currentGame = res.data;
-      $rootScope.$emit('gameChange', currentGame);
-    });
+  var setCurrentGameFromCollection = function(game) {
+    // console.log('set current game from collection');
+    currentGame = game;
+    $rootScope.$emit('gameChangeCollection', currentGame);
   };
+
+  var setCurrentGameFromSearch = function(game) {
+    currentGame = game;
+    $rootScope.$emit('gameChangeSearch', currentGame);
+  };
+
   var getCurrentGame = function() {
     return currentGame;
   };
   return {
-    setCurrentGame: setCurrentGame,
+    setCurrentGameFromCollection: setCurrentGameFromCollection,
+    setCurrentGameFromSearch: setCurrentGameFromSearch,
     getCurrentGame: getCurrentGame,
   };
 }]);

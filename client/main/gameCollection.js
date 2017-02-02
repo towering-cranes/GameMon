@@ -10,9 +10,9 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
   $scope.platformArr = [];
   $scope.genreArr = [];
 
-  $scope.selectGame = function(id) {
-    SelectedGame.setCurrentGame(id);
-    console.log('Selected Game: ', id);
+  $scope.selectGame = function(game) {
+    SelectedGame.setCurrentGameFromCollection(game);
+    // console.log('get game from gameCollection', SelectedGame.getCurrentGame());
   };
 
   UserCollection.getUserCollection($scope.username, function(res) {
