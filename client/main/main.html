@@ -14,7 +14,7 @@
         <li>
           <form>
             <div class="input-field">
-              <input id="search" type="search" placeholder="Name/Franchise Filter" required>
+              <input id="search" type="search" placeholder="Name/Franchise" ng-model='textFilter' ng-change="setFilter([textFilter, 'text'])" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
               <i class="material-icons">close</i>
               <!--Tiny "fake" button that gives the search bar functionality-->
@@ -49,13 +49,13 @@
     <!-- Dropdown Structure -->
     <ul id='platformDropdown' class='dropdown-content'>
         <li ng-repeat="platform in platformArr">
-          <a ng-click="setFilter(platform)">{{platform}}</a>
+          <a ng-click="setFilter([platform,'platform'])">{{platform}}</a>
         </li>
     </ul>
 
     <ul id='genreDropdown' class='dropdown-content'>
         <li ng-repeat="genre in genreArr">
-          <a ng-click="setFilter(genre)">{{genre}}</a>
+          <a ng-click="setFilter([genre,'genre'])">{{genre}}</a>
         </li>
     </ul>
 
