@@ -1,7 +1,7 @@
 // controller for modal
-var app = angular.module('gameMon.modal', ['ui.materialize', 'gameMon.selectedGame', 'gameMon.search']);
+var app = angular.module('gameMon.modal', ['ui.materialize', 'gameMon.selectedGame', 'gameMon.search', 'gameMon.gameCollection']);
 
-app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'giantBomb', function($scope, SelectedGame, $rootScope, giantBomb) {
+app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'giantBomb', 'UserCollection', function($scope, SelectedGame, $rootScope, giantBomb, UserCollection) {
   $scope.data = {};
   $scope.similarGames = [];
 
@@ -19,7 +19,6 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
       $scope.similarGames = game.similar_games;
     });
     $scope.canAdd = true;
-    console.log($scope.canAdd);
   });
 
   $rootScope.$on('gameChangeCollection', function(event, game) {
