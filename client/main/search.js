@@ -1,6 +1,6 @@
 // controller for game collection
-var app = angular.module('gameMon.search', ['ui.materialize']);
-app.controller('SearchController', function($scope, giantBomb) {
+var app = angular.module('gameMon.search', ['ui.materialize', 'gameMon.selectedGame']);
+app.controller('SearchController', function($scope, giantBomb, SelectedGame) {
   $scope.search = '';
   $scope.searchResults = [];
 
@@ -10,6 +10,11 @@ app.controller('SearchController', function($scope, giantBomb) {
       $scope.search = '';
       $scope.searchForm.$setPristine();
     });
+  };
+
+  $scope.selectGame = function(game) {
+    SelectedGame.setCurrentGameFromSearch(game);
+    // console.log('get game from search', SelectedGame.getCurrentGame());
   };
 
 });
