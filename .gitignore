@@ -6,6 +6,8 @@ dist/
 node_modules/
 server/config/keys.js
 env/
+.env
+client/user/test-env.js
 
 # Floobits #
 .floo
