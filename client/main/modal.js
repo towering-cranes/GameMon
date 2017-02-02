@@ -6,7 +6,19 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
   $scope.similarGames = [];
 
   // true for add, false for remove
-  $scope.canAdd = false;
+  $scope.inCollection = false;
+
+  $scope.addGameToCollection = function(giantBombId) {
+    // UserCollection.addGameToCollection($rootScope.username, giantBombId, function(response) {
+    //   console.log(response);
+    // });
+    console.log('inside add');
+    $scope.inCollection = false;
+  };
+  $scope.removeGameFromCollection = function() {
+    console.log('inside removed');
+    $scope.inCollection = true;
+  };
 
   // Game from search is different than collection
   $rootScope.$on('gameChangeSearch', function(event, game) {
