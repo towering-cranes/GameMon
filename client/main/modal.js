@@ -10,13 +10,15 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
 
   $scope.addGameToCollection = function(giantBombId) {
     UserCollection.addGameToCollection($rootScope.username, giantBombId, function(response) {
-      console.log(response);
+      // console.log(response);
+      $rootScope.$emit('collectionChange');
     });
     $scope.inCollection = true;
   };
   $scope.removeGameFromCollection = function(giantBombId) {
     UserCollection.removeGameFromCollection($rootScope.username, giantBombId, function(response) {
-      console.log(response);
+      // console.log(response);
+      $rootScope.$emit('collectionChange');
     });
     $scope.inCollection = false;
   };
