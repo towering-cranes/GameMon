@@ -3,7 +3,7 @@
 <!-- Needs a controller for custom filtering -->
 <div class="row" id="gameCollection">
 <div ng-init="searchModel = false" class='{{searchModel ? "col s8" : "col s11"}}'>
-  <div ng-controller="GameCollectionController" ng-init="genFilter = platFilter = ''">
+  <div ng-controller="GameCollectionController">
    <nav class="nav-extended blue">
     <div class="nav-content">
       <h3 class="collectionTitle">Game Collection</h3>
@@ -32,8 +32,8 @@
               Genre
           </a>
         </li>
-        <li ng-click="platFilter = genFilter = ''">
-        Reset Filters
+        <li>
+          <a href ng-click="current = ''"> Reset Filters </a>
         </li>
         </ul>
         <ul class="right hide-on-med-and-down views" ng-init="layout = 'grid'">
@@ -47,16 +47,15 @@
       </ul>
     </div>
     <!-- Dropdown Structure -->
-    <!--TODO: Apply filter after clicking the dropdown option-->
     <ul id='platformDropdown' class='dropdown-content'>
         <li ng-repeat="platform in platformArr">
-          <a href = "javascript:void(0);" ng-click="platFilter = '{{platform}}'"'>{{platform}}</a>
+          <a ng-click="setFilter(platform)">{{platform}}</a>
         </li>
     </ul>
 
     <ul id='genreDropdown' class='dropdown-content'>
         <li ng-repeat="genre in genreArr">
-          <a href = "javascript:void(0);" ng-click="genFilter = '{{genre}}'">{{genre}}</a>
+          <a ng-click="setFilter(genre)">{{genre}}</a>
         </li>
     </ul>
 
@@ -64,7 +63,7 @@
     <!-- Games view -->
     <div class="row">
       <span ng-if="data.games.length===0">No games currently in collection. Add games by pressing the plus button on the right.</span>
-      <div class="game" ng-repeat="game in data.games | platformFilter:platFilter">
+      <div class="game" ng-repeat="game in data.games | collectionFilter:current">
         <!-- grid layout -->
         <div ng-if="layout === 'grid'">
           <!-- game -->
