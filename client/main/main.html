@@ -1,6 +1,5 @@
 
 <!-- Game Collection -->
-<!-- Needs a controller for custom filtering -->
 <div class="row" id="gameCollection">
 <div ng-init="searchModel = false" class='{{searchModel ? "col s8" : "col s11"}}'>
   <div ng-controller="GameCollectionController">
@@ -17,8 +16,6 @@
               <input id="search" type="search" placeholder="Name/Franchise" ng-model='textFilter' ng-change="setFilter([textFilter, 'text'])" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
               <i class="material-icons">close</i>
-              <!--Tiny "fake" button that gives the search bar functionality-->
-              <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
             </div>
           </form>
         </li>
@@ -66,11 +63,8 @@
       <div class="game" ng-repeat="game in data.games | collectionFilter:current">
         <!-- grid layout -->
         <div ng-if="layout === 'grid'">
-          <!-- game -->
           <div class="col s2">
-            <!-- img, description etc UPDATE to include final property of data object-->
             <a data-target="game0" modal ng-click="selectGame(game)">
-            <!-- <img class='champion-icon' src='http://ddragon.leagueoflegends.com/cdn/7.2.1/img/champion/Trundle.png'/> -->
             <img class="gameImage" ng-src="{{ game.image }}">
             </a>
           </div>
@@ -88,9 +82,6 @@
                   <h5>{{game.title}}</h5>
                   <p>{{ game.summary }}</p>
                 </div>
-    <!--           <div class="card-action">
-                <a href="#">More Details</a>
-              </div> -->
               </div>
             </div>
         </div>
@@ -143,8 +134,7 @@
   <div class="modal-content">
     <div class="row">
       <div class="col s3">
-        <!-- TODO: Move style away from here -->
-        <img style="width:200px" class='skin-splash center-align' ng-src="{{ data.image }}" />
+        <img class='modalImage center-align' ng-src="{{ data.image }}" />
       </div>
       <div class="col s7 push-s1">
         <div class="row">
