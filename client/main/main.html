@@ -107,7 +107,7 @@
 
     <h4>Search Games</h4><br>
     <form name="searchForm" ng-submit="searchForGames()">
-      <input type="text" placeholder="Enter a game here" ng-model="search"></input>
+      <input id="search-input" type="text" placeholder="Enter a game here" ng-model="search"></input>
     </form>
 
     <div ng-repeat="game in searchResults">
