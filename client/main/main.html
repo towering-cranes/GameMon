@@ -163,13 +163,13 @@
         <!-- Game details -->
 
         <div class="row">
-          <div class="release-year">
-            <h5>{{ data.releaseYear }}</h5>
+          <div class="platforms">
+            <span ng-repeat="platform in data.platforms">{{ platform.name }} </span>
           </div>
         </div>
         <div class="row">
-          <div class="platforms">
-            <span>{{ data.platforms }}</span>
+          <div class="release-year">
+            <h5>{{ data.releaseYear }}</h5>
           </div>
         </div>
 
