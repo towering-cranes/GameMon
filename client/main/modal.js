@@ -49,7 +49,6 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
     $scope.data.releaseYear = game.releaseDate ? game.releaseDate.slice(0, 4) : null;
-    console.log(game);
 
     // $scope.similarGames = game.similarGames; // Assignment like this doesn't update carousel... suboptimal fix below
     giantBomb.searchById(game.giantBombId, function(response) {
