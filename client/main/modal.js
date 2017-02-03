@@ -32,7 +32,9 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.data.giantBombId = game.id;
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
+      console.log(response.data);
       $scope.similarGames = game.similar_games;
+      $scope.data.releaseYear = game.original_release_date ? game.original_release_date.slice(0, 4) : null;
     });
     $scope.inCollection = false;
   });
@@ -46,7 +48,9 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     // $scope.similarGames = game.similarGames; // Assignment like this doesn't update carousel... suboptimal fix below
     giantBomb.searchById(game.giantBombId, function(response) {
       var game = response.data;
+      console.log(response.data);
       $scope.similarGames = game.similar_games;
+      $scope.data.releaseYear = game.original_release_date ? game.original_release_date.slice(0, 4) : null;
     });
     $scope.inCollection = true;
   });

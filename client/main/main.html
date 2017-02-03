@@ -152,7 +152,7 @@
             <h5 ng-repeat="publisher in data.publishers">{{ publisher.name }}</h5>
           </div>
             <div class="col s1 push-s7">
-              <!-- add button -->
+              <!-- Add/Remove button -->
               <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
                   <i ng-show="!inCollection" class="material-icons">add</i>
                   <i ng-show="inCollection" class="material-icons">remove</i>
@@ -160,15 +160,20 @@
             </div>
           </div>
 
+        <!-- Game details -->
+
         <div class="row">
+          <div class="release-year">
+            <p>{{ data.releaseYear }}</p>
+          </div>
           <div class="deck">
             <p>{{ data.deck }}</p>
           </div>
         </div>
-          <!-- Game details -->
+
         <hr>
-        <!--carousel similar games-->
-        <!-- TODO: Make separate api calls to get similar game images -->
+
+        <!-- Carousel for similar games -->
         <h5>Related Games</h5>
         <div ng-show="!similarGames.length">No related games.</div>
         <div ng-if="similarGames.length" carousel full-width="true" indicators="true">
