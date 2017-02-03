@@ -75,7 +75,9 @@ main {
   margin: 20px;
   transition: opacity 0.3s;
 }
-.gameImage:hover {
+.gameImage:hover, .card.horizontal:hover {
+  opacity: 0.7;
+} {
   opacity: 0.7;
 }
 .searchCard {
@@ -112,11 +114,11 @@ main {
   color: white;
   background-color: #2196F3;
 }
-.game-deck {
-  color: black;
-}
 #search-input {
   padding-left: 5px;
   background-color: white;
   color: black;
+}
+.card.horizontal {
+  transition: 0.3s;
 }

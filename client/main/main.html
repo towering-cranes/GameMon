@@ -81,19 +81,19 @@
         </div>
       <!-- list layout -->
         <div ng-if="layout === 'list'">
-            <div class="card horizontal">
-              <div class="card-image">
-                <a data-target="game0" modal ng-click="selectGame(game)">
-                  <img class="listImage" ng-src="{{ game.image }}" />
-                </a>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <h5>{{game.title}}</h5>
-                  <p>{{ game.summary }}</p>
+            <a data-target="game0" modal ng-click="selectGame(game)">
+              <div class="card horizontal">
+                <div class="card-image">
+                    <img class="listImage" ng-src="{{ game.image }}" />
+                </div>
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <h5>{{game.title}}</h5>
+                    <p>{{ game.summary }}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
         </div>
       </div> <!-- end of ng-repeat-->
     </div>
@@ -115,7 +115,7 @@
         <div class="card-image">
           <img class="responsive-img" ng-src="{{ game.image.small_url }}">
         </div>
-        <div class="card-stacked game-deck">
+        <div class="card-stacked black-text">
           <div class="card-content searchCard">
             <p>{{ game.deck }}</p>
           </div>
