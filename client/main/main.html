@@ -106,9 +106,13 @@
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
-    <form name="searchForm" ng-submit="searchForGames()">
-      <input id="search-input" type="text" placeholder="Enter a game here" ng-model="search"></input>
-    </form>
+      <form name="searchForm" ng-submit="searchForGames()">
+        <div class="row">
+          <div class="input-field">
+          <input id="search-input" type="text" ng-model="search" placeholder="Enter a game here" required></input>
+        </div>
+      </form>
+    </div>
 
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
