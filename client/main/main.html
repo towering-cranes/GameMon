@@ -131,10 +131,11 @@
 </div>
 
 <!--Search button-->
- <a class="btn-floating btn-large waves-effect waves-light teal right" ng-model='searchModel' ng-click='searchModel=!searchModel'>
- <i class="material-icons" ng-if="searchModel===false">add</i>
- <i class="material-icons" ng-if="searchModel===true">remove</i>
- </a>
+<div id="search-button">
+  <a class="btn-floating btn-large waves-effect waves-light teal right" ng-model='searchModel' ng-click='searchModel=!searchModel'>
+  <i class="material-icons" ng-if="searchModel===false">add</i>
+  <i class="material-icons" ng-if="searchModel===true">remove</i>
+  </a>
 </div>
 
 <!--Game Modal Window Area -->
