@@ -4,17 +4,22 @@
 //   process.env.AUTH0_CLIENT_ID,
 //   process.env.AUTH0_DOMAIN
 // );
-
+var options = {
+  auth: {
+  responseType: 'token',
+  }
+};
 var lock = new Auth0Lock(
   window.authClient,
   window.authDomain,
-  {auth: {responseType: 'token', redirectUrl: 'http://127.0.0.1:8080/#/gamemon'}}
+  options//does the redirect url have to be wih %
 );
 
 
 // Listening for the authenticated event
 lock.on("authenticated", function(authResult) {
   // Use the token in authResult to getUserInfo() and save it to localStorage
+  showLoggedIn();
   lock.getUserInfo(authResult.accessToken, function(error, profile) {
     if (error) {
       // Handle error
@@ -53,5 +58,6 @@ if (token) {
 function showLoggedIn() {
   var currentPath = window.location.href;//full current url
   console.log('Replacement path ', 'http://127.0.0.1:8080/#/gamemon');
-  window.location.href = 'http://127.0.0.1:8080/#/gamemon';
+  // window.location.href = 'http://127.0.0.1:8080/#/gamemon';
+  window.location.href = '/#/gamemon';
 }

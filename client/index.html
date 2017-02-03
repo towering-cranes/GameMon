@@ -17,12 +17,12 @@
   <nav>
     <div class="nav-wrapper blue">
       <a href="#/gamemon" class="brand-logo">GameMon</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 140px;">
+      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 140px;" ng-controller="LoginController">
         <li><a href="#/#about">About</a></li>
         <li><a href="#/#getstarted">Get Started</a></li>
         <li><a href="#/#theteam">The Team</a></li>
-        <li><a id = "btn-login" href="#">Sign Up</a></li>
-        <li><a id = "btn-logout" href="#">Sign Out</a></li>
+        <li ng-show="!isLoggedIn"><a id = "btn-login" href="#"  ng-click="login()">Sign Up </a></li>
+        <li ng-show="isLoggedIn"><a id = "btn-logout" href="#" ng-click="logout()">Sign Out</a></li>
       </ul>
     </div>
   </nav>
@@ -36,15 +36,22 @@
 <!--Materialize-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+<script type="text/javascript" src="https://cdn.auth0.com/js/lock-9.0.js"></script>
+<script type="text/javascript" src="https://cdn.auth0.com/w2/auth0-angular-4.2.6.js"></script>
 <!--Angular-route-->
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
 <!--Scripts in files-->
-<script src="https://cdn.auth0.com/js/lock/10.9.1/lock.min.js"></script>
-<!-- Load ENV Vars -->
+<!-- <script src="https://cdn.auth0.com/js/lock/10.9.1/lock.min.js"></script>
+ --><!-- Load ENV Vars -->
 <script src="user/test-env.js"></script>
-<script src="user/lock.js"></script>
-<script src="main/selectedGame.js"></script>
+<!-- ngStorage -->
+<!-- json web tokens -->
+<script src ="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+<!-- <script src="user/lock.js"></script>
+ --><script src="main/selectedGame.js"></script>
 <script src = "main/modal.js"></script>
+<script src = "main/toggle.js"></script>
 <script src = "main/gameCollection.js"></script>
 <script src = "main/search.js"></script>
 <script src = "app.js"></script>
