@@ -75,7 +75,7 @@
         <div ng-if="layout === 'grid'">
           <div class="col s2">
             <a data-target="game0" modal ng-click="selectGame(game)">
-            <img class="gameImage" ng-src="{{ game.image }}">
+            <img class="gameImage responsive-img" ng-src="{{ game.image }}">
             </a>
           </div>
         </div>
@@ -84,7 +84,7 @@
             <div class="card horizontal">
               <div class="card-image">
                 <a data-target="game0" modal ng-click="selectGame(game)">
-                  <img ng-src="{{ game.image }}" class="listImage">
+                  <img class="responsive-img" ng-src="{{ game.image }}" class="listImage">
                 </a>
               </div>
               <div class="card-stacked">
@@ -113,7 +113,7 @@
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
-          <img ng-src="{{ game.image.small_url }}">
+          <img class="responsive-img" ng-src="{{ game.image.small_url }}">
         </div>
         <div class="card-stacked game-deck">
           <div class="card-content searchCard">
