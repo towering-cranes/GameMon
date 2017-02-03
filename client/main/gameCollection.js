@@ -134,8 +134,10 @@ app.filter('collectionFilter', function() {
         if (filterOpt[1] === 'text' && filterOpt[0]) {
           //Check if input matches title or aliases
           //Get rid of accent on e for Pokémon case (most common case) and ignore caps
-          if (items[i].title.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase() || items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
-            filtered.push(items[i]);
+          if (items[i].aliases !== null) {
+            if (items[i].title.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase() || items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
+              filtered.push(items[i]);
+            }
           } else {
             //Check if matches franchise
             if (items[i].franchises) {
