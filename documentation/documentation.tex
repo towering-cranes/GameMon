@@ -190,29 +190,77 @@ Front-end uses AngularJS with Materialize/Angular-materialize. Materialize/Angul
   \item \href {https://getmdl.io/started/}{Material Icons}
   \item \href {http://materializecss.com/}{Materialize CSS}
 \end{itemize}
-\subsection{Home Page}
-
-\subsection{GameMon}
-The GameMon page can divided into three large sections: Game Collection, Search, and Modal Window.
-\subsubsection{Game Collection}
-The Game Collection holds all the games currently linked to the user's collection in the database. The games can then be sorted title or release date. The view can also be changed between grid and list view. The games also be filtered by title, franchise, platform, and genre.
-
-TODO:
--Factory functions get, add, delete
--Other functions
-
-The custom filter takes in setFilter(filterOpt) as an input where filterOpt is an array. The first element of filterOpt is the search term to find and the second element is what type of filter term it is, e.g. text, platform, or genre. The filter returns all the objects that will be displayed after filtering. items holds all of the possible objects. The custom filter checks for a match in the respective locations of the all the objects and returns all the matches.
-
-\subsubsection{Search}
-\subsubsection{Modal Window}
-
+\subsection{Files}
+The roles of the different files are as follows:
+\begin{itemize}
+  \item /client/styles/styles.css
+  \begin{itemize}
+    \item Custom stylesheet for overrides and other styles not included in Materialize
+  \end{itemize}
+  \item /client/assets
+  \begin{itemize}
+    \item Images and other files to be used across client pages
+  \end{itemize}
+  \item /client/index.html
+  \begin{itemize}
+    \item Loads JS libraries
+    \item Sets up header, navigation, and footer
+  \end{itemize}
+  \item /client/app.js
+  \begin{itemize}
+    \item Handles client side routing to load templates in /client/main or /client/home
+  \end{itemize}
+  \item /client/home/home.html
+  \begin{itemize}
+    \item Template for product landing page
+    \item Default page if root directory is loaded or if an invalid url is provided
+  \end{itemize}
+  \item /client/main/main.html
+  \begin{itemize}
+    \item Uses ternary operator on gameCollection to see if search sidebar should be displayed. If it should be displayed, the column width is set to 8, if not, it is set to 11.
+    \item Uses custom filter in gameCollection.js to allow filtering by title, franchise, platform, and genre
+    \item Allows collection view to change between list and grid and sort by title or release date
+    \item Holds modal markup that appears when a game is clicked on
+  \end{itemize}
+  \item /client/main/modal.js
+  \begin{itemize}
+    \item Controller to load data into the scope for modal information
+    \begin{itemize}
+      \item similar games
+    \end{itemize}
+  \end{itemize}
+  \item /client/main/gameCollection.js
+  \begin{itemize}
+    \item Holds a factory that allows
+    \begin{itemize}
+      \item getUserCollection that loads a game collection for the signed-in user
+      \item addGameToCollection adds a selected game to the current users collection
+      \item removeGameFromCollection removes the selected game from the current users collection
+    \end{itemize}
+    \item Holds a custom filter that takes in setFilter(filterOpt) as an input where filterOpt is an array
+    \begin{itemize}
+      \item custom filter checks for a match in the respective locations of all the objects and returns all matches
+      \item first element of filterOpt is the search term to find
+      \item second element is what type of filter term it is: text, platform, or genre
+      \item returns all objects that will be displayed after filtering
+      \item items holds all possible objects
+    \end{itemize}
+  \end{itemize}
+  \item /client/main/search.js
+  \begin{itemize}
+    \item Holds a factory that allows
+    \begin{itemize}
+      \item searchByTerm
+      \item searchById
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 \subsection{User Authentication}
 
 \section{Deployment}
 Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deployment. The droplet uses a MEAN base image (0.5.0) running on Ubuntu 16.04 with MySQL and several other technologies.
 
 \textbf{It is best to have ONE team member work on deployment. This removes the need for multiple SSH keys and rule out issues with individual development environments.}
-\begin{flushleft}
 \textbf{Steps to get it running (this will help ensure there are no issues):}
 \begin{enumerate}
   \item Create Droplet with 1-Click App: MEAN 0.5.0 on 16.04
@@ -247,60 +295,76 @@ Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deplo
       \item \textbf{sudo sysctl vm.swappiness=10} (persists until system reboot)
       \item \textbf{sudo sysctl vm.vfs\_cache\_pressure=50} (persists until system reboot)
     \end{enumerate}
-    \item Install MySQL (\href{https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04}{reference})
+  \end{enumerate}
+  \item Install MySQL (\href{https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04}{reference})
+  \begin{enumerate}
+    \item Run the following commands referencing the above link as necessary
     \begin{enumerate}
-      \item Run the following commands referencing the above link as necessary
+      \item \textbf{sudo apt-get install mysql-server} This will prompt you to create a root password. Write it down!
+      \item \textbf{sudo mysql\_secure\_installation}
+    \end{enumerate}
+    \item MySQL should be up and running
+    \item Log into the MySQL CLI
+    \begin{enumerate}
+      \item \textbf{mysql -u root -p} (enter password at prompt)
+    \end{enumerate}
+    \item Create a database named gamemon
+    \begin{enumerate}
+      \item \textbf{CREATE DATABASE gamemon}
+    \end{enumerate}
+  \end{enumerate}
+  \item Get a Giant Bomb API key (write this down)
+  \begin{itemize}
+    \item \href{http://www.giantbomb.com/api/}{Giant Bomb API}
+  \end{itemize}
+  \item Clone repo (with work tree and git tracking separation) (\href{https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps}{reference})
+  \begin{enumerate}
+    \item Navigate to a directory you want to store both the repo and a separate git folder (towering-cranes used root/)
+    \item Install PM2 for running the web app server in the background
+    \begin{enumerate}
+      \item \textbf{npm install -g pm2}
+      \item Create a config file for PM2 with env variables
       \begin{enumerate}
-        \item \textbf{sudo apt-get install mysql-server} This will prompt you to create a root password. Write it down!
-        \item \textbf{sudo mysql\_secure\_installation}
-      \end{enumerate}
-      \item MySQL should be up and running
-      \item Log into the MySQL CLI
-      \begin{enumerate}
-        \item \textbf{mysql -u root -p} (enter password at prompt)
-      \end{enumerate}
-      \item Create a database named gamemon
-      \begin{enumerate}
-        \item \textbf{CREATE DATABASE gamemon}
+        \item \textbf{touch gamemon.config.js}
+        \item \textbf{nano gamemon.config.js}
+        \item Copy and paste this replacing the db password and Giant Bomb API key:
+        \begin{lstlisting}
+        module.exports = {
+          /**
+           * Application configuration section
+           * http://pm2.keymetrics.io/docs/usage/application-declaration/
+           */
+          apps : [
+            {
+              name      : "server",
+              script    : "node towering-cranes/server/server.js",
+              env: {
+                PORT: 80,
+                DB_PASSWORD: password_here******,
+                GIANTBOMB_API_KEY: api_key_here******
+              }
+            }
+          ]
+        \end{lstlisting}
+        \item Save file
       \end{enumerate}
     \end{enumerate}
-    \item Set environmental variables
+    \item Clone the web app repo
     \begin{enumerate}
-      \item cd to /etc/
-      \item Modify environment file
-      \begin{enumerate}
-        \item \textbf{nano environment}
-      \end{enumerate}
-      \item Add to environment file
-      \begin{enumerate}
-        \item PORT=80
-        \item DB\_PASSWORD=password\_here
-        \item GIANTBOMB\_API\_KEY=key\_here
-      \end{enumerate}
+      \item \textbf{git clone REPO\_LINK\_HERE}
+      \item cd into the repo folder
+      \item \textbf{npm install}
+      \item Run the server by cd to where gamemon.config.js is (probably up one directory)
+      \item \textbf{pm2 start gamemon.config.js}
     \end{enumerate}
-    \item Clone repo (with work tree and git tracking separation) (\href{https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps}{reference})
+    \item Create bare git
     \begin{enumerate}
-      \item Navigate to a directory you want to store both the repo and a separate git folder (towering-cranes used root/)
-      \item Clone the web app repo
-      \begin{enumerate}
-        \item \textbf{git clone REPO\_LINK\_HERE}
-        \item cd into the repo folder
-        \item \textbf{npm install}
-      \end{enumerate}
-      \item Install PM2 for running the web app server in the background
-      \begin{enumerate}
-        \item \textbf{npm install -g pm2}
-        \item \textbf{pm2 server/server.js}
-      \end{enumerate}
-      \item Create bare git
-      \begin{enumerate}
-        \item \textbf{cd ..}
-        \item \textbf{mkdir SOME\_NAME\_HERE.git}
-        \item \textbf{cd SOME\_NAME\_HERE.git}
-        \item \textbf{git init --bare}
-        \item \textbf{cd hooks}
-        \item \textbf{nano post-receive}
-      \end{enumerate}
+      \item \textbf{cd ..}
+      \item \textbf{mkdir SOME\_NAME\_HERE.git}
+      \item \textbf{cd SOME\_NAME\_HERE.git}
+      \item \textbf{git init --bare}
+      \item \textbf{cd hooks}
+      \item \textbf{nano post-receive}
       \item Add the following lines to the post-receive file (press Ctrl+X to quit and save)
       \begin{enumerate}
         \item \#!/bin/sh
@@ -310,28 +374,44 @@ Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deplo
         \item pm2 restart server
       \end{enumerate}
       \item chmod +x post-receive
-      \item Set up local workspace (best for only one team member to do this)
-      \begin{enumerate}
-        \item cd to your local clone of the repo on the server
-        \item Add a remote
-        \begin{itemize}
-          \item \textbf{git remote add live ssh://root@your\_droplet\_ip/path\_to\_bare\_git}
-          \item When deploying, \textbf{git push live master} should push all the recent changes and restart the PM2 server instance
-        \end{itemize}
-      \end{enumerate}
+    \end{enumerate}
+    \item Set up local workspace (best for only one team member to do this)
+    \begin{enumerate}
+      \item cd to your local clone of the repo on the server
+      \item Add a remote
+      \begin{itemize}
+        \item \textbf{git remote add live ssh://root@your\_droplet\_ip/path\_to\_bare\_git}
+        \item When deploying, \textbf{git push live master} should push all the recent changes and restart the PM2 server instance
+      \end{itemize}
     \end{enumerate}
   \end{enumerate}
 \end{enumerate}
-\end{flushleft}
-Occasionally, deploying will cause some features to break unexpectedly. We didn’t figure out why this is but it can be solved by sshing into the server and running:
-\begin{enumerate}
-  \item \textbf{sudo fuser -k 80/tcp (to kill the current server running on port 80)}
-  \item \textbf{pm2 server restart}
-\end{enumerate}
+
+  % \item Set environmental variables
+  % \begin{enumerate}
+  %   \item cd to /etc/
+  %   \item Modify environment file
+  %   \begin{enumerate}
+  %     \item \textbf{nano environment}
+  %   \end{enumerate}
+  %   \item Add to environment file
+  %   \begin{enumerate}
+  %     \item PORT=80
+  %     \item DB\_PASSWORD=password\_here
+  %     \item GIANTBOMB\_API\_KEY=key\_here
+  %   \end{enumerate}
+  % \end{enumerate}
+  % \end{enumerate}
+% \end{enumerate}
+% \end{flushleft}
+% Occasionally, deploying will cause some features to break unexpectedly. We didn’t figure out why this is but it can be solved by sshing into the server and running:
+% \begin{enumerate}
+%   \item \textbf{sudo fuser -k 80/tcp (to kill the current server running on port 80)}
+%   \item \textbf{pm2 server restart}
+% \end{enumerate}
 
 \section{Documentation}
 If you haven't noticed already, this document is written using \LaTeX, a typesetting system that is great for technical documents.
-\begin{flushleft}
   \textbf{Steps to start using \LaTeX:}
   \begin{enumerate}
     \item Download one of the TeX distributions
@@ -348,7 +428,6 @@ If you haven't noticed already, this document is written using \LaTeX, a typeset
     \item Install one of the LaTeX packages in Sublime (LaTeXTools or LaTeXing)
     \item Build your .tex document and start using \LaTeX!
   \end{enumerate}
-\end{flushleft}
 
 % \section{Extra - Delete Later}
 % \begin{lstlisting}
