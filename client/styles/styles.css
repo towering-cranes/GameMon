@@ -74,7 +74,7 @@ main {
   max-width:200px;
 }
 .searchCard {
-  font-size: 10px;
+  font-size: 14px;
 }
 .nav-wrapper {
   padding-left:20px;
@@ -92,7 +92,26 @@ main {
 .card-image {
   padding-top:10px;
   padding-bottom:20px;
+  padding-left: 5px;
 }
 .modalImage {
   width: 200px;
+}
+#search-button {
+  position: absolute;
+  right: 55px;
+  top: 105px;
+}
+.search-area {
+  margin-top: 22px;
+  color: white;
+  background-color: #2196F3;
+}
+.game-deck {
+  color: black;
+}
+#search-input {
+  padding-left: 5px;
+  background-color: white;
+  color: black;
 }

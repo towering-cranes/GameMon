@@ -1,7 +1,7 @@
 
 <!-- Game Collection -->
 <div class="row" id="gameCollection">
-<div ng-init="searchModel = false" class='{{searchModel ? "col s8" : "col s11"}}'>
+<div ng-init="searchModel = false" class='{{searchModel ? "col s9" : "col s12"}}'>
   <div ng-controller="GameCollectionController">
    <nav class="nav-extended blue">
     <div class="nav-content">
@@ -95,29 +95,27 @@
               </div>
             </div>
         </div>
-
-      </div><!-- end of ng-repeat-->
+      </div> <!-- end of ng-repeat-->
     </div>
   </div>
 </div>
 
 
 <!--Search Area -->
-<div class="col s3" ng-if="searchModel===true">
+<div class="col s3 search-area" ng-if="searchModel===true">
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
     <form name="searchForm" ng-submit="searchForGames()">
-      <input type="text" placeholder="search" ng-model="search"></input>
+      <input id="search-input" type="text" placeholder="Enter a game here" ng-model="search"></input>
     </form>
 
-    <h5>Search Results</h5>
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
           <img ng-src="{{ game.image.small_url }}">
         </div>
-        <div class="card-stacked">
+        <div class="card-stacked game-deck">
           <div class="card-content searchCard">
             <p>{{ game.deck }}</p>
           </div>
@@ -131,10 +129,11 @@
 </div>
 
 <!--Search button-->
- <a class="btn-floating btn-large waves-effect waves-light teal right" ng-model='searchModel' ng-click='searchModel=!searchModel'>
- <i class="material-icons" ng-if="searchModel===false">add</i>
- <i class="material-icons" ng-if="searchModel===true">remove</i>
- </a>
+<div id="search-button">
+  <a class="btn-floating btn-large waves-effect waves-light teal right" ng-model='searchModel' ng-click='searchModel=!searchModel'>
+  <i class="material-icons" ng-if="searchModel===false">add</i>
+  <i class="material-icons" ng-if="searchModel===true">remove</i>
+  </a>
 </div>
 
 <!--Game Modal Window Area -->
@@ -206,7 +205,7 @@
           <h5>Videos:</h5>
           <p ng-hide="data.videos.length">No videos. Sorry.</p>
           <div class="video" ng-repeat="video in data.videos">
-            <a ng-href="{{ video.site_detail_url }}">
+            <a target="_blank" ng-href="{{ video.site_detail_url }}">
               <p>{{ video.name }}</p>
             </a>
           </div>
