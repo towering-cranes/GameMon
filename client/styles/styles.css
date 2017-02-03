@@ -97,5 +97,7 @@ main {
   width: 200px;
 }
 #search-button {
-  padding-top: 20px
+  position: absolute;
+  right: 55px;
+  top: 100px;
 }
