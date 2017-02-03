@@ -120,3 +120,7 @@ main {
 .card.horizontal {
   transition: 0.3s;
 }
+.filter-input {
+  position: relative;
+  top: 21px;
+}
