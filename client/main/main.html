@@ -175,6 +175,7 @@
         </div>
         <div class="row">
           <h5>Videos:</h5>
+          <p ng-hide="data.videos.length">No videos. Sorry.</p>
           <div class="video" ng-repeat="video in data.videos">
             <a ng-href="{{ video.site_detail_url }}">
               <p>{{ video.name }}</p>
