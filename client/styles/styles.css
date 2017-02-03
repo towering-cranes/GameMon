@@ -92,6 +92,7 @@ main {
 .card-image {
   padding-top:10px;
   padding-bottom:20px;
+  padding-left: 5px;
 }
 .modalImage {
   width: 200px;
@@ -99,5 +100,13 @@ main {
 #search-button {
   position: absolute;
   right: 55px;
-  top: 100px;
+  top: 105px;
+}
+.search-area {
+  margin-top: 22px;
+  color: white;
+  background-color: #2196F3;
+}
+.game-deck {
+  color: black;
 }

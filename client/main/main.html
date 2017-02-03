@@ -102,21 +102,20 @@
 
 
 <!--Search Area -->
-<div class="col s3" ng-if="searchModel===true">
+<div class="col s3 search-area" ng-if="searchModel===true">
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
     <form name="searchForm" ng-submit="searchForGames()">
-      <input type="text" placeholder="search" ng-model="search"></input>
+      <input type="text" placeholder="Enter a game here" ng-model="search"></input>
     </form>
 
-    <h5>Search Results</h5>
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
           <img ng-src="{{ game.image.small_url }}">
         </div>
-        <div class="card-stacked">
+        <div class="card-stacked game-deck">
           <div class="card-content searchCard">
             <p>{{ game.deck }}</p>
           </div>
