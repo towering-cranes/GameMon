@@ -25,7 +25,7 @@ exports.addGameToCollection = function(user, game, callback) {
       developers: JSON.stringify(game.developers),
       summary: game.deck,
       similarGames: JSON.stringify(game.similar_games),
-      videos: JSON.stringify(game.videos.api_detail_url)
+      videos: JSON.stringify(game.videos)
     };
     db.Game.findOrCreate({where: {title: game.name}, defaults: newGame}).spread(function(game, created) {
       user.addGame(game); // only needs one direction

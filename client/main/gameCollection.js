@@ -18,7 +18,6 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
 
   $scope.selectGame = function(game) {
     SelectedGame.setCurrentGameFromCollection(game);
-    // console.log('get game from gameCollection', SelectedGame.getCurrentGame());
   };
 
   var getCollection = function() {

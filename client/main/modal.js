@@ -28,8 +28,8 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     $scope.data = game;
     $scope.similarGames = [];
     $scope.data.image = game.image ? game.image.small_url : null;
-    $scope.canAddToCollection = true;
     $scope.data.giantBombId = game.id;
+
     giantBomb.searchById(game.id, function(response) {
       var game = response.data;
       console.log(response.data);
@@ -37,6 +37,7 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
       $scope.data.videos = game.videos;
       $scope.similarGames = game.similar_games;
     });
+
     $scope.inCollection = false;
   });
 
@@ -46,12 +47,13 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
     // Set up same format as giantbomb results...
     $scope.data.name = game.title;
     $scope.data.deck = game.summary;
+    $scope.data.releaseYear = game.releaseDate ? game.releaseDate.slice(0, 4) : null;
+    console.log(game);
+
     // $scope.similarGames = game.similarGames; // Assignment like this doesn't update carousel... suboptimal fix below
     giantBomb.searchById(game.giantBombId, function(response) {
       var game = response.data;
-      console.log(response.data);
-      $scope.data.releaseYear = game.original_release_date ? game.original_release_date.slice(0, 4) : null;
-      $scope.data.videos = game.videos;
+      // $scope.data.videos = game.videos;
       $scope.similarGames = game.similar_games;
     });
     $scope.inCollection = true;
