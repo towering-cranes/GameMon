@@ -1,8 +1,8 @@
 var app = angular.module('gameMon.toggle', ['auth0'])
   .config(function(authProvider){
     authProvider.init({
-      domain: window.authDomain,
-      clientID: window.authClient
+      domain: 'towering-cranes.auth0.com',
+      clientID: 'QfGpmdzDtxUhduPejeKN8P1TadDU8OqG'
     });
   }).run(function(auth){
     auth.hookEvents();
