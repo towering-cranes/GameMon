@@ -151,20 +151,38 @@
             <h3>{{ data.name }}</h3>
             <h5 ng-repeat="publisher in data.publishers">{{ publisher.name }}</h5>
           </div>
-            <div class="col s1 push-s7">
-              <!-- Add/Remove button -->
-              <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
-                  <i ng-show="!inCollection" class="material-icons">add</i>
-                  <i ng-show="inCollection" class="material-icons">remove</i>
-              </a>
-            </div>
+          <div class="col s1 push-s7">
+            <!-- Add/Remove button -->
+            <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
+                <i ng-show="!inCollection" class="material-icons">add</i>
+                <i ng-show="inCollection" class="material-icons">remove</i>
+            </a>
           </div>
+        </div>
+
+        <hr>
 
         <!-- Game details -->
 
         <div class="row">
           <div class="platforms">
+            <h5>Platforms:</h5>
+            <p ng-show="!data.platforms">No platforms. Sorry.</p>
             <span ng-repeat="platform in data.platforms">{{ platform.name }} </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="genres">
+            <h5>Genres:</h5>
+            <p ng-show="!data.genres">No genres. Sorry.</p>
+            <span ng-repeat="genre in data.genres">{{ genre.name }} </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="franchises">
+            <h5>Franchises:</h5>
+            <p ng-show="!data.franchises">No franchises. Sorry.</p>
+            <span ng-repeat="franchise in data.franchises">{{ franchise.name }} </span>
           </div>
         </div>
         <div class="row">

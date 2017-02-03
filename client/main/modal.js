@@ -34,8 +34,9 @@ app.controller('ModalController', ['$scope', 'SelectedGame', '$rootScope', 'gian
       var game = response.data;
       $scope.data.releaseYear = game.original_release_date ? game.original_release_date.slice(0, 4) : null;
       $scope.data.videos = game.videos;
+      $scope.data.genres = game.genres;
+      $scope.data.franchises = game.franchises;
       $scope.similarGames = game.similar_games;
-      console.log($scope.data);
     });
 
     $scope.inCollection = false;
