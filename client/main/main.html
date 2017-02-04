@@ -75,25 +75,25 @@
         <div ng-if="layout === 'grid'">
           <div class="col s2">
             <a data-target="game0" modal ng-click="selectGame(game)">
-            <img class="gameImage responsive-img z-depth-4" ng-src="{{ game.image }}">
+            <img class="gameImage" ng-src="{{ game.image }}">
             </a>
           </div>
         </div>
       <!-- list layout -->
         <div ng-if="layout === 'list'">
-            <a data-target="game0" modal ng-click="selectGame(game)">
-              <div class="card horizontal">
-                <div class="card-image">
-                    <img class="listImage" ng-src="{{ game.image }}" />
+            <div class="card horizontal">
+              <div class="card-image">
+                <a data-target="game0" modal ng-click="selectGame(game)">
+                    <img ng-src="{{ game.image }}" class="listImage">
+                </a>
                 </div>
                 <div class="card-stacked">
                   <div class="card-content">
                     <h5>{{game.title}}</h5>
-                    <p class="black-text">{{ game.summary }}</p>
-                  </div>
+                    <p>{{ game.summary }}</p>
                 </div>
               </div>
-            </a>
+            </div>
         </div>
       </div> <!-- end of ng-repeat-->
     </div>
@@ -113,9 +113,9 @@
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
-          <img class="responsive-img" ng-src="{{ game.image.small_url }}">
+          <img ng-src="{{ game.image.small_url }}">
         </div>
-        <div class="card-stacked black-text">
+        <div class="card-stacked game-deck">
           <div class="card-content searchCard">
             <p>{{ game.deck }}</p>
           </div>
