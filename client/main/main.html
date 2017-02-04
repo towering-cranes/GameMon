@@ -13,7 +13,7 @@
         <li>
           <form>
             <div class="input-field">
-              <input id="search" type="search" placeholder="Name/Franchise" ng-model='textFilter' ng-change="setFilter([textFilter, 'text'])" required>
+              <input class="filter-input" id="search" type="search" placeholder="Name/Franchise" ng-model='textFilter' ng-change="setFilter([textFilter, 'text'])" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
               <i class="material-icons">close</i>
             </div>
@@ -75,25 +75,25 @@
         <div ng-if="layout === 'grid'">
           <div class="col s2">
             <a data-target="game0" modal ng-click="selectGame(game)">
-            <img class="gameImage" ng-src="{{ game.image }}">
+            <img class="gameImage responsive-img z-depth-4" ng-src="{{ game.image }}">
             </a>
           </div>
         </div>
       <!-- list layout -->
         <div ng-if="layout === 'list'">
-            <div class="card horizontal">
-              <div class="card-image">
-                <a data-target="game0" modal ng-click="selectGame(game)">
-                  <img ng-src="{{ game.image }}" class="listImage">
-                </a>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <h5>{{game.title}}</h5>
-                  <p>{{ game.summary }}</p>
+            <a data-target="game0" modal ng-click="selectGame(game)">
+              <div class="card horizontal collection-card">
+                <div class="card-image">
+                    <img class="listImage" ng-src="{{ game.image }}" />
+                </div>
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <h5>{{game.title}}</h5>
+                    <p class="black-text">{{ game.summary }}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
         </div>
       </div> <!-- end of ng-repeat-->
     </div>
@@ -106,16 +106,20 @@
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
-    <form name="searchForm" ng-submit="searchForGames()">
-      <input id="search-input" type="text" placeholder="Enter a game here" ng-model="search"></input>
-    </form>
+      <form name="searchForm" ng-submit="searchForGames()">
+        <div class="row">
+          <div class="input-field">
+          <input id="search-input" type="text" ng-model="search" placeholder="Enter a game here" required></input>
+        </div>
+      </form>
+    </div>
 
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
-          <img ng-src="{{ game.image.small_url }}">
+          <img class="responsive-img" ng-src="{{ game.image.small_url }}">
         </div>
-        <div class="card-stacked game-deck">
+        <div class="card-stacked black-text">
           <div class="card-content searchCard">
             <p>{{ game.deck }}</p>
           </div>
