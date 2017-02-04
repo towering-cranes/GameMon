@@ -2,8 +2,8 @@
 var app = angular.module('gameMon.gameCollection', ['ui.materialize', 'gameMon.selectedGame']);
 app.controller('GameCollectionController', function($scope, UserCollection, SelectedGame, $rootScope) {
   $scope.data = {};
-  $scope.username = 'kevin';
-  $rootScope.username = 'kevin';
+  $scope.username = localStorage.profile;
+  $rootScope.username = localStorage.profile;
   //Store games in corresponding objects
   $scope.platforms = {};
   $scope.genres = {};
@@ -51,7 +51,11 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
     });
   };
 
-  getCollection();
+  //getCollection();
+  UserCollection.addUser({username: $scope.username, password: 'password'}, function(response){
+    console.log('User successfully added');
+    getCollection();
+  });
 
   $rootScope.$on('collectionChange', function(event) {
     getCollection();
@@ -61,6 +65,19 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
 
 app.factory('UserCollection', ['$http', function($http) {
   var db = {};
+
+   //db.addUser = //make a post request to /users
+    //call add user with whatever local storage user is
+    //call it with password is password
+    //specify a callback
+
+    //db.adduser takes a user object with username password
+      //make an http post request to /users
+  db.addUser = function(user, callback){
+    $http.post('/users').then(function(response){
+      callback(response);
+    }, failCallback);
+  };
 
   db.getUserCollection = function(username, callback) {
     $http.get('/users/games/' + username)
