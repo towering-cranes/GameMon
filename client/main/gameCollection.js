@@ -53,7 +53,7 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
 
   //getCollection();
   UserCollection.addUser({username: $scope.username, password: 'password'}, function(response){
-    console.log('User successfully added');
+    // console.log('User successfully added', $scope.username, typeof $scope.username);
     getCollection();
   });
 
@@ -74,7 +74,7 @@ app.factory('UserCollection', ['$http', function($http) {
     //db.adduser takes a user object with username password
       //make an http post request to /users
   db.addUser = function(user, callback){
-    $http.post('/users').then(function(response){
+    $http.post('/users', user).then(function(response){
       callback(response);
     }, failCallback);
   };
