@@ -53,7 +53,7 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
 
   //getCollection();
   UserCollection.addUser({username: $scope.username, password: 'password'}, function(response){
-    console.log('User successfully added', $scope.username, typeof $scope.username);
+    // console.log('User successfully added', $scope.username, typeof $scope.username);
     getCollection();
   });
 
