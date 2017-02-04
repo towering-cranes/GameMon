@@ -8,7 +8,6 @@ var app = angular.module('gameMon.toggle', ['auth0'])
     auth.hookEvents();
   });
 
-
 app.controller('LoginController', function(auth, $scope, $location, $http, $window){
   $scope.isLoggedIn = false;
   $scope.login = function(){
