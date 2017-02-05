@@ -8,14 +8,19 @@ var app = angular.module('gameMon.toggle', ['auth0'])
     auth.hookEvents();
   });
 
-app.controller('LoginController', function(auth, $scope, $location, $http, $window, $rootScope){
+app.controller('LoginController', function(auth, $scope, $location, $http, $window, $rootScope, $route) {
   $rootScope.isLoggedIn = localStorage.getItem('profile') ? true : false;
   $scope.login = function(){
     auth.signin({}, function(profile, idToken, accessToken) {
       localStorage.setItem('profile', profile.user_id);
       localStorage.setItem('token', accessToken);
       $rootScope.isLoggedIn = true;
-      $location.path('/gamemon');
+      if ($location.path() === '/gamemon') {
+        $route.reload();
+      } else {
+        console.log($location.path());
+        $location.path('/gamemon');
+      }
     });
   }
   $scope.logout = function(){
