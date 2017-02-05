@@ -146,73 +146,57 @@
   <div class="modal-content">
     <div class="row">
       <div class="col s3">
-        <img class='modalImage center-align' ng-src="{{ data.image }}" />
+        <img class='modalImage center-align responsive-img z-depth-4' ng-src="{{ data.image }}" />
       </div>
-      <div class="col s7 push-s1">
-        <div class="row">
-          <div class="col s6">
-            <h3>{{ data.name }}</h3>
-            <h5 ng-repeat="publisher in data.publishers">{{ publisher.name }}</h5>
-          </div>
-          <div class="col s1 push-s7">
-            <!-- Add/Remove button -->
-            <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
-                <i ng-show="!inCollection" class="material-icons">add</i>
-                <i ng-show="inCollection" class="material-icons">remove</i>
-            </a>
-          </div>
+      <br>
+      <div class="col s8">
+        <h3>{{ data.name }}</h3>
+        <h4>{{ data.releaseYear }}</h4>
+        <h5 ng-repeat="publisher in data.publishers">{{ publisher.name }}</h5>
+      </div>
+      <div class="col s1">
+        <!-- Add/Remove button -->
+        <a ng-click="!inCollection ? addGameToCollection(data.giantBombId) : removeGameFromCollection(data.giantBombId)" class="right btn-floating btn-large waves-effect waves-light teal">
+          <i ng-show="!inCollection" class="material-icons">add</i>
+          <i ng-show="inCollection" class="material-icons">remove</i>
+        </a>
+      </div>
+
+      <!-- Game details -->
+
+      <div class="row col s9 offset-s3">
+        <hr>
+        <div class="platforms">
+          <h5>Platforms:</h5>
+          <p ng-show="!data.platforms">No platforms. Sorry.</p>
+          <span ng-repeat="platform in data.platforms">{{ platform.name }} </span>
+        </div>
+        <div class="genres">
+          <h5>Genres:</h5>
+          <p ng-show="!data.genres">No genres. Sorry.</p>
+          <span ng-repeat="genre in data.genres">{{ genre.name }} </span>
+        </div>
+        <div class="franchises">
+          <h5>Franchises:</h5>
+          <p ng-show="!data.franchises">No franchises. Sorry.</p>
+          <span ng-repeat="franchise in data.franchises">{{ franchise.name }} </span>
         </div>
 
         <hr>
 
-        <!-- Game details -->
-
-        <div class="row">
-          <div class="platforms">
-            <h5>Platforms:</h5>
-            <p ng-show="!data.platforms">No platforms. Sorry.</p>
-            <span ng-repeat="platform in data.platforms">{{ platform.name }} </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="genres">
-            <h5>Genres:</h5>
-            <p ng-show="!data.genres">No genres. Sorry.</p>
-            <span ng-repeat="genre in data.genres">{{ genre.name }} </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="franchises">
-            <h5>Franchises:</h5>
-            <p ng-show="!data.franchises">No franchises. Sorry.</p>
-            <span ng-repeat="franchise in data.franchises">{{ franchise.name }} </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="release-year">
-            <h5>{{ data.releaseYear }}</h5>
-          </div>
+        <div class="deck">
+          <h5>Summary:</h5>
+          <p>{{ data.deck }}</p>
         </div>
 
         <hr>
 
-        <div class="row">
-          <div class="deck">
-            <h5>Summary:</h5>
-            <p>{{ data.deck }}</p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="row">
-          <h5>Videos:</h5>
-          <p ng-hide="data.videos.length">No videos. Sorry.</p>
-          <div class="video" ng-repeat="video in data.videos">
-            <a target="_blank" ng-href="{{ video.site_detail_url }}">
-              <p>{{ video.name }}</p>
-            </a>
-          </div>
+        <h5>Videos:</h5>
+        <p ng-hide="data.videos.length">No videos. Sorry.</p>
+        <div class="video" ng-repeat="video in data.videos">
+          <a target="_blank" ng-href="{{ video.site_detail_url }}">
+            <p>{{ video.name }}</p>
+          </a>
         </div>
 
         <hr>
