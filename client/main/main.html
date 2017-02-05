@@ -106,14 +106,16 @@
   <div ng-controller="SearchController">
 
     <h4>Search Games</h4><br>
-      <form name="searchForm" ng-submit="searchForGames()">
+      <div class="progress" ng-if="loading===true">
+        <div class="indeterminate"></div>
+      </div>
+      <form name="searchForm" autocomplete="off" ng-submit="searchForGames()">
         <div class="row">
           <div class="input-field">
           <input id="search-input" type="text" ng-model="search" placeholder="Enter a game here" required></input>
         </div>
       </form>
     </div>
-
     <div ng-repeat="game in searchResults">
       <div class="card horizontal">
         <div class="card-image">
