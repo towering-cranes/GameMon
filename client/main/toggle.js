@@ -18,7 +18,6 @@ app.controller('LoginController', function(auth, $scope, $location, $http, $wind
       if ($location.path() === '/gamemon') {
         $route.reload();
       } else {
-        console.log($location.path());
         $location.path('/gamemon');
       }
     });
