@@ -37,13 +37,15 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
           }
         }
         //Genres
-        for (var k = 0; k < game.genres.length; k++) {
-          var genre = game.genres[k].name;
-          if (!$scope.genres.hasOwnProperty(genre)) {
-            $scope.genres[genre] = [game];
-            $scope.genreArr.push(genre);
-          } else {
-            $scope.genres[genre].push(game);
+        if (game.genres !== null) {
+          for (var k = 0; k < game.genres.length; k++) {
+            var genre = game.genres[k].name;
+            if (!$scope.genres.hasOwnProperty(genre)) {
+              $scope.genres[genre] = [game];
+              $scope.genreArr.push(genre);
+            } else {
+              $scope.genres[genre].push(game);
+            }
           }
         }
       }
@@ -171,9 +173,11 @@ app.filter('collectionFilter', function() {
         if (filterOpt[1] === 'genre') {
           var genres = items[i].genres;
           //Check if genre matches filter
-          for (var j = 0; j < genres.length; j++) {
-            if(genres[j].name === filterOpt[0]) {
-              filtered.push(items[i]);
+          if (genres !== null) {
+            for (var j = 0; j < genres.length; j++) {
+              if(genres[j].name === filterOpt[0]) {
+                filtered.push(items[i]);
+              }
             }
           }
         }
