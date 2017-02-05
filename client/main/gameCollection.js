@@ -187,9 +187,11 @@ app.filter('collectionFilter', function() {
         if (filterOpt[1] === 'platform') {
           var platforms = items[i].platforms;
           //Check if platform matches filter
-          for (var j = 0; j < platforms.length; j++) {
-            if(platforms[j].name === filterOpt[0]) {
-              filtered.push(items[i]);
+          if (platforms !== null) {
+            for (var j = 0; j < platforms.length; j++) {
+              if(platforms[j].name === filterOpt[0]) {
+                filtered.push(items[i]);
+              }
             }
           }
         }
