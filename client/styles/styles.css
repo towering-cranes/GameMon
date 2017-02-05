@@ -1,10 +1,11 @@
 body {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   font-family: arial, sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #0d47a1;
 }
 
 article img, aside img {
