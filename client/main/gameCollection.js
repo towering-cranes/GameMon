@@ -27,13 +27,15 @@ app.controller('GameCollectionController', function($scope, UserCollection, Sele
       for (var i = 0; i < $scope.data.games.length; i++) {
         var game = $scope.data.games[i];
         //Platforms
-        for (var j = 0; j < game.platforms.length; j++) {
-          var platform = game.platforms[j].name;
-          if (!$scope.platforms.hasOwnProperty(platform)) {
-            $scope.platforms[platform] = [game];
-            $scope.platformArr.push(platform);
-          } else {
-            $scope.platforms[platform].push(game);
+        if (game.platforms !== null) {
+          for (var j = 0; j < game.platforms.length; j++) {
+            var platform = game.platforms[j].name;
+            if (!$scope.platforms.hasOwnProperty(platform)) {
+              $scope.platforms[platform] = [game];
+              $scope.platformArr.push(platform);
+            } else {
+              $scope.platforms[platform].push(game);
+            }
           }
         }
         //Genres
