@@ -22,5 +22,6 @@ app.controller('LoginController', function(auth, $scope, $location, $http, $wind
     $scope.isLoggedIn = false;
     localStorage.removeItem('profile');
     localStorage.removeItem('token');
+    $window.location.href = 'https://towering-cranes.auth0.com/v2/logout';
   }
 });
