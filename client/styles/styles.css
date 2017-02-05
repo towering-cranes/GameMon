@@ -125,3 +125,6 @@ main {
   position: relative;
   top: 21px;
 }
+.home-image {
+  max-height: 500px;
+}
