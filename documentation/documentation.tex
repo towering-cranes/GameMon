@@ -263,6 +263,12 @@ authProvider.init({
   });
 \end{lstlisting}
 After this we create a controller, ‘LoginController’, which runs when a user clicks signup and when a user logs out.  The important takeaway from this controller is its use of local storage.  When the user logs in, their profile information and Auth0 access token is added to the browser’s local storage.  We set and remove the profile and token by calling ‘localStorage.setItem’ and ‘localStorage.removeItem’. We are able to keep the user logged in or logged out by looking for a profile on their local browser and toggling the signup/sign out buttons accordingly with ng-if.
+\\
+\textbf{Resources:}
+\begin{itemize}
+  \item \href {https://auth0.com/docs/quickstart/spa/angularjs/00-intro}{Auth0 Authentication Service}
+  \item \href {https://github.com/auth0/auth0-angular}{Auth0 with Angular Module}
+\end{itemize}
 
 \section{Deployment}
 Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deployment. The droplet uses a MEAN base image (0.5.0) running on Ubuntu 16.04 with MySQL and several other technologies.

@@ -5,5 +5,7 @@ Welcome to GameMon! We hope this documentation helps you navigate around the pro
 
 ##Documentation##
 [Documentation](documentation/documentation.pdf)
+
 [Contribution guidelines for this project](_CONTRIBUTING.md)
+
 [Style guidelines for this project](STYLE-GUIDE.md)
