@@ -1,4 +1,9 @@
 # towering-cranes #
+Welcome to GameMon! We hope this documentation helps you navigate around the project quickly and efficiently. GameMon is an app for tracking what video games you have in your collection. Users signup and build out a collection based on the thousands of games available in the GiantBomb API.
 
-## Schema for database ##
-https://drive.google.com/open?id=0B4Fq96LW3XySSmwxanNBOG5ORzg
+[Press release for this project](_PRESS-RELEASE.md)
+
+##Documentation##
+[Documentation](documentation/documentation.pdf)
+[Contribution guidelines for this project](_CONTRIBUTING.md)
+[Style guidelines for this project](STYLE-GUIDE.md)
