@@ -163,13 +163,12 @@ app.filter('collectionFilter', function() {
             if (items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
               filtered.push(items[i]);
             }
-          } else {
-            //Check if matches franchise
-            if (items[i].franchises) {
-              for (var j = 0; j < items[i].franchises.length; j++) {
-                if (items[i].franchises[j].name.toLowerCase() === filterOpt[0].toLowerCase()) {
-                  filtered.push(items[i]);
-                }
+          }
+          //Check if matches franchise
+          if (items[i].franchises) {
+            for (var j = 0; j < items[i].franchises.length; j++) {
+              if (items[i].franchises[j].name.toLowerCase() === filterOpt[0].toLowerCase()) {
+                filtered.push(items[i]);
               }
             }
           }
