@@ -159,7 +159,7 @@ app.filter('collectionFilter', function() {
           //Check title match
           if (items[i].title.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()){
             filtered.push(items[i]);
-          } else if (items[i].aliases !== null) {
+          } if (items[i].aliases !== null) {
             if (items[i].aliases.replace(/é/g, 'e').toLowerCase() === filterOpt[0].toLowerCase()) {
               filtered.push(items[i]);
             }
