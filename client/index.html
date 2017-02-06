@@ -11,19 +11,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
   <!-- Stylesheet -->
   <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav>
     <div class="nav-wrapper blue">
       <a href="#/gamemon" class="brand-logo">GameMon</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 140px;" ng-controller="LoginController">
+      <ul id="nav-wrapper container" class="right hide-on-med-and-down" style="margin-right: 140px;" ng-controller="LoginController">
         <li><a href="#">About</a></li>
         <li><a href="#/#getstarted">Get Started</a></li>
         <li><a href="#/#theteam">The Team</a></li>
         <li ng-show="!isLoggedIn"><a id = "btn-login" ng-click="login()">Sign In </a></li>
         <li ng-show="isLoggedIn"><a id = "btn-logout" ng-click="logout()">Sign Out</a></li>
       </ul>
+      <ul id="nav-mobile" class="side-nav" style="margin-right: 140px;" ng-controller="LoginController">
+        <li><a href="#">About</a></li>
+        <li><a href="#/#getstarted">Get Started</a></li>
+        <li><a href="#/#theteam">The Team</a></li>
+        <li ng-show="!isLoggedIn"><a id = "btn-login" ng-click="login()">Sign In </a></li>
+        <li ng-show="isLoggedIn"><a id = "btn-logout" ng-click="logout()">Sign Out</a></li>
+      </ul>
+      <a href="" class="button-collapse" data-activates="nav-mobile">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
   <br>
@@ -47,6 +61,9 @@
   <script src = "main/gameCollection.js"></script>
   <script src = "main/search.js"></script>
   <script src = "app.js"></script>
+  <script type="text/javascript">
+    $('.button-collapse').sideNav();
+  </script>
 </body>
 
 <footer class="page-footer blue">
