@@ -126,8 +126,7 @@ Welcome to GameMon! We hope this documentation helps you navigate around the pro
   .2 README.md.
 }
 \section{Database Schema}
-% \includegraphics[width=5 cm, height=5cm]{databaseSchema}
-TODO: Update this picture
+\includegraphics[scale=.5]{Schemav4}
 
 \section{Server-Side}
 Server-side files hold the routes and the helper functions needed for the routing.
@@ -256,7 +255,14 @@ The roles of the different files are as follows:
   \end{itemize}
 \end{itemize}
 \subsection{User Authentication}
-We implemented a client-side authentication using Auth0. The toggle.js files holds the logic for the authentication. First, we instantiate a module gameMon.toggle. We include the dependency 'auth0' in order to use the Angular wrapper for Auth0. We pass the domain and client id in as an argument to authProvider.init({domain: <our domain key>, clientID: <our clientI>}).
+We implemented a client-side authentication using Auth0. The toggle.js files holds the logic for the authentication. First, we instantiate a module gameMon.toggle. We include the dependency 'auth0' in order to use the Angular wrapper for Auth0. We pass the domain and client id in as an argument to authProvider.
+\begin{lstlisting}
+authProvider.init({
+  domain: <our domain key>,
+  clientID: <our client ID>
+  });
+\end{lstlisting}
+After this we create a controller, ‘LoginController’, which runs when a user clicks signup and when a user logs out.  The important takeaway from this controller is its use of local storage.  When the user logs in, their profile information and Auth0 access token is added to the browser’s local storage.  We set and remove the profile and token by calling ‘localStorage.setItem’ and ‘localStorage.removeItem’. We are able to keep the user logged in or logged out by looking for a profile on their local browser and toggling the signup/sign out buttons accordingly with ng-if.
 
 \section{Deployment}
 Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deployment. The droplet uses a MEAN base image (0.5.0) running on Ubuntu 16.04 with MySQL and several other technologies.
@@ -384,6 +390,11 @@ Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deplo
         \item \textbf{git remote add live ssh://root@your\_droplet\_ip/path\_to\_bare\_git}
         \item When deploying, \textbf{git push live master} should push all the recent changes and restart the PM2 server instance
       \end{itemize}
+    \end{enumerate}
+    \item Sometimes the post-receive hook doesn't instantiate the env vars. A workaround when parts aren't working, e.g. search bar, is to ssh into the droplet and run these commands
+    \begin{enumerate}
+      \item \textbf{ sudo fuser -k 80/tcp}
+      \item \textbf{pm2 restart server}
     \end{enumerate}
   \end{enumerate}
 \end{enumerate}
