@@ -3,12 +3,15 @@ var app = angular.module('gameMon.search', ['ui.materialize', 'gameMon.selectedG
 app.controller('SearchController', function($scope, giantBomb, SelectedGame) {
   $scope.search = '';
   $scope.searchResults = [];
+  $scope.loading = false;
 
   $scope.searchForGames = function() {
+    $scope.loading = true;
     giantBomb.searchByTerm($scope.search, function(res) {
       $scope.searchResults = res.data;
       $scope.search = '';
       $scope.searchForm.$setPristine();
+      $scope.loading = false;
     });
   };
 

@@ -8,21 +8,24 @@ var app = angular.module('gameMon.toggle', ['auth0'])
     auth.hookEvents();
   });
 
-app.controller('LoginController', function(auth, $scope, $location, $http, $window){
-  $scope.isLoggedIn = false;
+app.controller('LoginController', function(auth, $scope, $location, $http, $window, $rootScope, $route) {
+  $rootScope.isLoggedIn = localStorage.getItem('profile') ? true : false;
   $scope.login = function(){
     auth.signin({}, function(profile, idToken, accessToken) {
       localStorage.setItem('profile', profile.user_id);
       localStorage.setItem('token', accessToken);
-      $scope.isLoggedIn = true;
-      $location.path('/gamemon');
+      $rootScope.isLoggedIn = true;
+      if ($location.path() === '/gamemon') {
+        $route.reload();
+      } else {
+        $location.path('/gamemon');
+      }
     });
   }
   $scope.logout = function(){
-    $scope.isLoggedIn = false;
-    $window.location.href ='https://towering-cranes.auth0.com/v2/logout';
-    $location.path('/');
+    $rootScope.isLoggedIn = false;
     localStorage.removeItem('profile');
     localStorage.removeItem('token');
+    $window.location.href = 'https://towering-cranes.auth0.com/v2/logout?returnTo=http%3A%2F%2F138.68.224.84';
   }
 });
