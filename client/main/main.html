@@ -5,7 +5,7 @@
   <div ng-controller="GameCollectionController">
    <nav class="nav-extended blue">
     <div class="nav-content">
-      <h3 class="collectionTitle">Game Collection</h3>
+      <h3 class="collectionTitle flow-text">Game Collection</h3>
     </div>
     <!--Nav bar-->
     <div class="nav-wrapper">
@@ -69,8 +69,8 @@
   </nav>
     <!-- Games view -->
     <div class="row">
-      <span ng-if="data.games.length===0 && userLoggedIn">No games currently in collection. Add games by pressing the plus button on the right.</span>
-      <span ng-if="!isLoggedIn">Please log in to start collecting!</span>
+      <span class="white-text" ng-if="data.games.length===0 && isLoggedIn"> No games currently in collection. Add games by pressing the plus button on the right.</span>
+      <span class="white-text" ng-if="!isLoggedIn">Please log in to start collecting!</span>
       <div class="game" ng-repeat="game in data.games | collectionFilter:current | orderBy: (sortOrder || 'title')">
         <!-- grid layout -->
         <div ng-if="layout === 'grid'">
@@ -106,7 +106,7 @@
 <div class="col s3 search-area" ng-if="searchModel===true">
   <div ng-controller="SearchController">
 
-    <h4>Search Games</h4><br>
+    <h4 class="flow-text">Search Games</h4><br>
       <form name="searchForm" autocomplete="off" ng-submit="searchForGames()">
         <div class="row">
           <div class="input-field">
