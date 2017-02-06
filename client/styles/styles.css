@@ -129,3 +129,6 @@ main {
 .home-image {
   max-height: 500px;
 }
+#sidenav-overlay{
+  background:none;
+}
