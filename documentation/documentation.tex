@@ -256,6 +256,7 @@ The roles of the different files are as follows:
   \end{itemize}
 \end{itemize}
 \subsection{User Authentication}
+We implemented a client-side authentication using Auth0. The toggle.js files holds the logic for the authentication. First, we instantiate a module gameMon.toggle. We include the dependency 'auth0' in order to use the Angular wrapper for Auth0. We pass the domain and client id in as an argument to authProvider.init({domain: <our domain key>, clientID: <our clientI>}).
 
 \section{Deployment}
 Towering-Cranes used \href{http://www.digitalocean.com/}{DigitalOcean} for deployment. The droplet uses a MEAN base image (0.5.0) running on Ubuntu 16.04 with MySQL and several other technologies.
