@@ -10,7 +10,7 @@ Welcome to GameMon! We hope this documentation helps you navigate around the pro
 - **Josephine Chen**, team member
 
 ## Postmortem
-Can be found here: [Postmortem](POSTMORTEM.md)
+[Postmortem](POSTMORTEM.md)
 
 ##Documentation##
 [Documentation](documentation/documentation.pdf)
