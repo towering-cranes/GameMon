@@ -16,7 +16,7 @@
 
   It keeps track of your games across consoles.
 
-## Quote from You ##
+## Quote ##
 
   Spend more time enjoying your games instead of searching through them.
 
