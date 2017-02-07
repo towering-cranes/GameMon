@@ -3,6 +3,12 @@ Welcome to GameMon! We hope this documentation helps you navigate around the pro
 
 [Press release for this project](_PRESS-RELEASE.md)
 
+## Team
+- **Andy Walz**, product owner
+- **Kevin Jang**, scrum master
+- **Eric Forsell**, team member
+- **Josephine Chen**, team member
+
 ## Postmortem
 Can be found here: [Postmortem](POSTMORTEM.md)
 
